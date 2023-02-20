@@ -1,0 +1,82 @@
+<div class="container pt-5">
+    <div class="col-12 border">
+        <div class="row fa-border mx-auto shadow border_radius same_color p-2">
+            <div class="col-12 mx-auto">
+                <div class="row  d-flex align-items-center">
+                    <div class="col-auto">
+                        <i class="bi h1 pointer bi-arrow-left-short" [routerLink]="['/admin-panel/addNewsList']"></i>
+                    </div>
+                    <div class="col">
+                        <h1>Read News</h1>
+                    </div>
+                    <div class="col justify-content-end d-flex align-items-center ">
+                        <button
+                            class="btn d-flex mx-2 align-items-center text-white justify-content-center rounded-pill btn_color bg-success"><i
+                                class="bi bi-pencil-fill h4 mb-0 mr-3 cursor_pointer"
+                                [routerLink]="['/admin-panel/addnews',oneNews?._id]"></i></button>
+                        <button
+                            class="btn d-flex align-items-center text-white justify-content-center rounded-pill btn_color bg-danger"><i
+                                class="bi bi-trash h4 mb-0" (click)="openModal(deleteNews)"></i></button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row mx-auto">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-12 my-2">
+                        <h2 class="m-0">{{oneNews?.title}}</h2>
+                    </div>
+                    <div class="col-12" *ngIf="oneNews?.image">
+                        <img class="image_div" [src]="oneNews?.image" alt="">
+                    </div>
+                    <div class="col-12 mt-3">
+                        <p class="m-0 user-select-none" innerHTML="{{oneNews?.news}}"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="loader_body position-relative" *ngIf="loader">
+                    <div class="LOADING">
+                        <div id="loading-bar-spinner" class="spinner">
+                            <div class="spinner-icon"></div>
+                        </div>
+                    </div>
+                    <h4 class="m-0 text_loading ">Loading...</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #deleteNews>
+    <div class="modal-header text-white bg-danger p-2">
+        <h5 class="modal-title " id="exampleModalLabel">Delete News</h5>
+        <button type="button" class="btn-close" (click)="modalRef.hide()"></button>
+    </div>
+    <div class="modal-body p-2">
+        <div class="row mx-auto">
+            <div class="col-12">
+                <p class="m-0 h5">Are You Sure Want To Delete News ?</p>
+            </div>
+            <div class="col-12 d-flex mt-3 align-items-center justify-content-end">
+                <button class="bg-success btn me-3 text-white" (click)="modalRef.hide()">No</button>
+                <button class="bg-danger btn text-white" (click)="deleteNewss()">Yes</button>
+            </div>
+        </div>
+    </div>
+</ng-template>
+<ng-template #successMsg id="successMsg" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-white bg-success p-2">
+                <h5 class="modal-title" id="exampleModalLabel">News Successfully Deleted</h5>
+                <button type="button" class="btn-close" (click)="modalRef.hide()"
+                    [routerLink]="['/admin-panel/addNewsList']"></button>
+            </div>
+        </div>
+    </div>
+</ng-template>

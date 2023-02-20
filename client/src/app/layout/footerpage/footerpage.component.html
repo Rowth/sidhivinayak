@@ -1,0 +1,83 @@
+<section class="Footer bg-white">
+  <div class="container">
+    <div class="row my-5">
+      <div class="col-12 footer_btm">
+        <div class="row pt-2">
+          <div class="col-md-3 col-6">
+            <h1 class="footer_head fw-bold">States</h1>
+            <ul class="list-unstyled pt-3">
+              <li *ngFor="let NationalData of NationalCat" (click)="sendId(NationalData?.name)"
+                [routerLink]="['/category-news/', NationalData?.category|filter,NationalData?.name|filter]" class="mb-3"
+                (click)="toppositon()">
+                {{ NationalData?.name }}
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-3 col-6">
+            <h1 class="footer_head fw-bold">Categories</h1>
+            <ul class="list-unstyled pt-3 ">
+              <li class="mb-3" (click)="toppositon()" *ngFor="
+                  let categoryData of categoryArray?.slice(0,9);
+                  let i = index
+                " aria-current="page" [title]="categoryData?.categoryName"
+                [routerLink]="['/category-news/', categoryData?.categoryName|filter]">
+                {{ categoryData?.categoryName }}
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-3 col-6">
+            <h1 class="footer_head fw-bold">Quick Links</h1>
+            <ul class="list-unstyled pt-3">
+              <li [routerLink]="['/aboutus']" (click)="toppositon()" class="mb-3">
+                About Us
+              </li>
+              <li [routerLink]="['/contactus']" (click)="toppositon()" class="mb-3">
+                Contact Us
+              </li>
+              <li [routerLink]="['/privacy']" (click)="toppositon()" class="mb-3">
+                Privacy Policy
+              </li>
+              <li [routerLink]="['/termandcondition']" (click)="toppositon()" class="mb-3">
+                Terms and Conditions
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="row">
+          <div class="col-12 pt-3 footer_text">
+            Read the latest breaking Hindi and English news on Sidhivinayak Times. Get
+            live Hindi and English news about India and the World from politics, sports,
+            bollywood business, cities, lifestyle, astrology, spirituality, jobs
+            and much more. Register with Sidhivinayak Times to get all the
+            latest Hindi news updates as they happen. Sidhivinayak Times to get
+            all the latest Hindi news updates as they happen. Sidhivinayak Times
+            to get all the latest Hindi news updates as they happen.
+          </div>
+        </div>
+      </div>
+      <div class="col-12 mt-3">
+        <div class="row">
+          <div class="col-md-9 col-12 btm_text_footer">
+            <span [routerLink]="['/aboutus']" (click)="toppositon()">
+              About Us |</span>
+            <span [routerLink]="['/contactus']" (click)="toppositon()">Contact Us</span>
+            |
+            <span [routerLink]="['/privacy']" (click)="toppositon()">
+              Privacy Policy
+            </span>
+            |
+            <span [routerLink]="['/termandcondition']" (click)="toppositon()">Terms and Conditions</span>
+          </div>
+          <div class="col-md-3 col-12copy_right text-center text-md-end">
+            © {{copyRgData}} SidhivinayakTimes
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3013303145491550"
+  crossorigin="anonymous">
+  </script>

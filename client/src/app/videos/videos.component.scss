@@ -1,0 +1,36 @@
+.Radius {
+    border-radius: 1.5rem;
+    // overflow: hidden;
+}
+
+.width {
+    width: -webkit-fill-available;
+}
+
+.same_color {
+    background-color: #f3c376;
+    -webkit-box-shadow: 0 8px 6px -6px black;
+    -moz-box-shadow: 0 8px 6px -6px black;
+    box-shadow: 0 8px 6px -6px black;
+}
+
+.iframe-width {
+    width: -webkit-fill-available;
+    height: 19.4rem;
+    border-radius: 15px;
+}
+
+.border_radius {
+    border-radius: 15px;
+}
+
+.loader_work {
+    height: 20rem;
+
+    .spinner-border {
+        width: 12rem;
+        height: 12rem;
+        border: 1.2em solid #f3c376;
+        border-right-color: transparent;
+    }
+}

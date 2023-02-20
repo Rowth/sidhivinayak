@@ -1,0 +1,120 @@
+.width {
+    width: -webkit-fill-available;
+}
+
+.national-text {
+    font-size: 20px;
+}
+
+.lifestyle_imgs {
+    // width: 21rem;
+    height: 13rem;
+}
+
+.heading {
+    font-size: 50px;
+    font-family: "Poppins", sans-serif;
+    margin-bottom: 0;
+    line-height: 1;
+    font-weight: 700;
+}
+
+.dot {
+    color: #f3c376;
+}
+
+//     width: 20rem;
+//     height: 11rem;
+// }
+.border_single {
+    border-radius: 13px;
+    // height: 20rem;
+    // border: 2px solid red;
+}
+
+// .border_single:nth-child(even) {
+//     border: 2px solid green;
+//     // margin: 0 auto;
+// }
+
+.Radius {
+    border-radius: 1.5rem;
+    // overflow: hidden;
+}
+
+.same_color {
+    background-color: #f3c376;
+    -webkit-box-shadow: 0 8px 6px -6px black;
+    -moz-box-shadow: 0 8px 6px -6px black;
+    box-shadow: 0 8px 6px -6px black;
+}
+
+.shadow_card {
+    border-radius: 10px;
+
+    img {
+        border-radius: 10px;
+    }
+}
+
+.loader_work {
+    height: 20rem;
+
+    .spinner-border {
+        width: 12rem;
+        height: 12rem;
+        border: 1.2em solid #f3c376;
+        border-right-color: transparent;
+    }
+}
+
+::ng-deep.page_work .ngx-pagination .current {
+    background-color: #f3c376;
+    color: #000;
+}
+
+.cursor_pointer {
+    cursor: pointer;
+}
+
+::ng-deep .news_div {
+    p {
+        margin: 0;
+    }
+}
+
+.title_text {
+    // height: 4rem;
+    line-height: 22px;
+}
+
+// .without_image {
+//   height: 16.5rem;
+// }
+.anchor_work {
+    height: 10rem;
+
+    .video_size {
+        width: -webkit-fill-available;
+        height: -webkit-fill-available;
+        background: black;
+    }
+}
+
+@media (max-width: 768px) {
+    .anchor_work {
+        height: -webkit-fill-available !important;
+    }
+
+    .heading {
+        font-size: 42px;
+    }
+
+    .without_image {
+        height: -webkit-fill-available;
+    }
+
+    ::ng-deep .page_work .ngx-pagination {
+        padding: 0;
+    }
+}

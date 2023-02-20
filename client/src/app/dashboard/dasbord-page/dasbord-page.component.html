@@ -1,0 +1,169 @@
+<div class="container-fluid p-0">
+    <div class="row px-0 mx-0 mt-5 dashboard_head py-5">
+        <div class="col-12">
+            <div class="title p-3 ">
+                <h2 class="pt-3 text-white ps-5 fw-bold ">Dashboard</h2>
+            </div>
+        </div>
+
+    </div>
+    <div class="containr ">
+        <div class="row position-relative mx-auto py-4">
+            <div class="col-12 position-absolute positon-div ">
+                <div class="row justify-content-evenly">
+                    <div class="col-lg-6 col-xl-4 mb-4"  routerLink='/admin-panel/category'>
+                        <div class="card bg-danger p-2 cursor_pointer hover_class text-white h-100" >
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="me-3">
+                                        <div class="text-lg fw-bold number">{{dashborddata?.categoryNo}}</div>
+                                    </div>
+                                    <!-- <i class="bi bi-youtube "></i> -->
+                                    <!-- <i class="bi bi-diamond-fill "></i> -->
+                                    <i class="bi bi-pass-fill text-white social-icon px-4"></i>
+                                </div>
+                            </div>
+                            <div class="card-footer d-flex align-items-center justify-content-between small">
+                                <a class="text-white text-decoration-none stretched-link">Total no. of
+                                    Category</a>
+                                <div class="text-white">
+                                    <i class="bi bi-chevron-right arrow-icon"></i>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-xl-4 mb-4">
+                        <div class="card bg-warning p-2 cursor_pointer hover_class  text-white h-100" [routerLink]="['/admin-panel/addNewsList']">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="me-3">
+                                        <div class="text-lg fw-bold number">{{dashborddata?.newsNo}}</div>
+                                    </div>
+                                    <!-- <i class="bi bi-book-fill text-white social-icon px-4"></i> -->
+                                    <i class="bi text-dark bi-newspaper text-white social-icon px-4"></i>
+                                </div>
+                            </div>
+                            <div class="card-footer d-flex align-items-center justify-content-between small">
+                                <a class="text-white text-decoration-none stretched-link">Total no. of
+                                    News</a>
+                                <div class="text-white">
+                                    <i class="bi bi-chevron-right arrow-icon"></i>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-xl-4 mb-4">
+                        <div class="card bg-success p-2 cursor_pointer hover_class text-white h-100"
+                        [routerLink]="['/admin-panel/advertisement-List']">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="me-3">
+                                        <div class="text-lg fw-bold number">{{dashborddata?.adsNo}}</div>
+                                    </div>
+                                    <!-- <i class="bi bi-journal-text text-white social-icon px-4"></i> -->
+                                    <!-- <i class="fa text-dark text-white social-icon px-4 fa-newspaper-o"
+                                        aria-hidden="true"></i> -->
+                                        <i class="bi bi-badge-ad-fill text-white social-icon px-4"></i>
+                                </div>
+                            </div>
+                            <div class="card-footer d-flex align-items-center justify-content-between small">
+                                <a class="text-white text-decoration-none stretched-link">Total no. of
+                                    Ads</a>
+                                <div class="text-white">
+                                    <i class="bi bi-chevron-right arrow-icon"></i>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-evenly">
+                    <div class="col-lg-6 col-xl-4 mb-4">
+                        <div class="card bg-primary p-2 cursor_pointer hover_class text-white h-100"
+                        [routerLink]="['/admin-panel/subCategory']">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="me-3">
+                                        <div class="text-lg fw-bold number">{{dashborddata?.subCategoryNo}}</div>
+                                    </div>
+                                    <!-- <i class="bi bi-bookmark-fill text-white social-icon px-4"></i> -->
+                                    <i class="fa text-dark fa-list-alt text-white social-icon px-4"
+                                        aria-hidden="true"></i>
+                                </div>
+                            </div>
+                            <div class="card-footer d-flex align-items-center justify-content-between small">
+                                <a class="text-white text-decoration-none stretched-link">Total no. of
+                                   SubCategory</a>
+                                <div class="text-white">
+                                    <i class="bi bi-chevron-right arrow-icon"></i>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-xl-4 mb-4">
+                        <div class="card bg-secondary p-2 cursor_pointer hover_class text-white h-100"
+                        [routerLink]="['/admin-panel/subSubCategory']" >
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="me-3">
+                                        <div class="text-lg fw-bold number">{{dashborddata?.subSubCatNo}}</div>
+                                    </div>
+                                    <!-- <i class="bi bi-youtube text-white social-icon px-4"></i> -->
+                                    <i class="fa text-dark fa-compass text-white social-icon px-4"
+                                        aria-hidden="true"></i>
+
+                                </div>
+                            </div>
+                            <div class="card-footer d-flex align-items-center justify-content-between small">
+                                <a class="text-white text-decoration-none stretched-link">Total no. of
+                                    SubsubCategory</a>
+                                <div class="text-white">
+                                    <i class="bi bi-chevron-right arrow-icon"></i>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-xl-4 mb-4">
+                        <div class="card bg-info p-2 cursor_pointer hover_class text-white h-100" [routerLink]="['/admin-panel/UserPanel']">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="me-3">
+                                        <div class="text-lg fw-bold number">{{dashborddata?.userNo}}</div>
+                                    </div>
+                                    <!-- <i class="bi bi-youtube text-white social-icon px-4"></i> -->
+                                    <i class="fa text-dark fa-clipboard text-white social-icon px-4"
+                                        aria-hidden="true"></i>
+
+                                </div>
+                            </div>
+                            <div class="card-footer d-flex align-items-center justify-content-between small">
+                                <a class="text-white text-decoration-none stretched-link">Total no. of
+                                    User
+                                </a>
+                                <div class="text-white">
+                                    <i class="bi bi-chevron-right arrow-icon"></i>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+    <div class="loader_body position-relative" *ngIf="loader">
+        <div class="LOADING">
+            <div id="loading-bar-spinner" class="spinner">
+                <div class="spinner-icon"></div>
+            </div>
+        </div>
+        <h4 class="m-0 text_loading ">Loading...</h4>
+    </div>
+
+</div>

@@ -1,0 +1,200 @@
+:root {
+    --primary-color: hsl(196, 78%, 61%);
+}
+
+.login {
+    background-image: url('../../assets/images/newapaperbg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
+body {
+    min-height: 100vh;
+    background: #eceffc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    // align-items: center;
+    // background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,91,121,1) 35%, rgba(0,212,255,1) 100%);
+    padding: 64px 94px;
+    color: white;
+    background-color: #e3dcdf;
+
+    font-family: "Microsoft YaHei", serif;
+    font-size: 16px;
+    // background-color: rgba(255, 255, 255, 0.4);
+    // -webkit-backdrop-filter: blur(5px);
+    // backdrop-filter: blur(9px);
+    border-radius: 8px;
+    box-shadow: 0 0.4px 0.4px rgba(128, 128, 128, 0.109),
+        0 1px 1px rgba(128, 128, 128, 0.155),
+        0 2.1px 2.1px rgba(128, 128, 128, 0.195),
+        0 4.4px 4.4px rgba(128, 128, 128, 0.241),
+        0 12px 12px rgba(128, 128, 128, 0.35);
+
+    h1 {
+        margin: 0 0 24px 0;
+        color: black;
+    }
+
+    .form-input-material {
+        margin: 12px 0;
+    }
+
+    .btn {
+        width: 100%;
+        margin: 18px 0 9px 0;
+        // padding: 8px 20px;
+        position: relative;
+        border-radius: 0;
+        background-color: black;
+        color: white;
+        font-size: 20px;
+    }
+
+    input {
+        // color: white;
+        color: black;
+    }
+
+    button,
+    input {
+        font: inherit;
+        outline: none;
+    }
+}
+
+.login-icons {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    transition: 0.3s;
+    transform-origin: right;
+    font-size: 19px;
+}
+
+.form-input-material {
+    // --input-border-bottom-color: white;
+    --input-border-bottom-color: black;
+
+
+    position: relative;
+    border-bottom: 1px solid var(--input-border-bottom-color);
+
+    &::before {
+        position: absolute;
+        content: "";
+        left: 0;
+        bottom: -1px;
+        width: 100%;
+        height: 2px;
+        background-color: var(--primary-color);
+        transform: scaleX(0);
+        transform-origin: center;
+        transition: 0.5s;
+    }
+
+    &:focus-within::before {
+        transform: scaleX(1);
+    }
+
+    .form-control-material {
+        padding: 0.5rem 0;
+        background: none;
+        border: none;
+        flex: 1;
+
+        // input 处于focus状态 or 占位符未显示(即input中输入了数据)
+        &:focus,
+        &:not(:placeholder-shown) {
+            ~label {
+                transform: translateY(-110%) scale(0.8);
+                color: black;
+            }
+        }
+    }
+
+    label {
+        position: absolute;
+        top: 0.5rem;
+        left: 0;
+        transition: 0.3s;
+        transform-origin: left;
+        color: black;
+    }
+}
+
+.forget_text {
+    font-size: 24px;
+    color: black;
+}
+
+.btn-ghost {
+    --btn-color: var(--primary-color);
+    --btn-border-color: var(--primary-color);
+
+    background: none;
+    transition: 0.3s;
+    overflow: hidden; // important!
+    color: var(--btn-color);
+    border: 1px solid var(--btn-border-color);
+
+    &::before {
+        position: absolute;
+        content: "";
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(120deg,
+                transparent,
+                var(--primary-color),
+                transparent);
+        transform: translateX(-100%);
+        transition: 0.6s;
+    }
+
+    &:hover {
+        box-shadow: 0 0 20px 5px hsla(204, 70%, 53%, 0.5);
+
+        &::before {
+            // translateX(-100%) --> translateX(100%)
+            transform: translateX(100%);
+        }
+    }
+}
+
+
+::-webkit-input-placeholder { /* Edge */
+    background-color: red;
+  }
+  
+
+
+
+::placeholder {
+    color: black;
+    font-size: 20px;
+}
+
+
+
+
+@media (max-width: 767.98px) {
+
+
+    .login-form {
+
+        padding: 101px 43px;
+
+    }
+}
+
+
+// background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,91,121,1) 35%, rgba(0,212,255,1) 100%);

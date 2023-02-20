@@ -1,0 +1,117 @@
+<div class="container pt-5">
+    <div class="row fa-border shadow border_radius p-2">
+        <div class="col-12 mx-auto">
+            <div class="row mb-2">
+                <div class="col-auto">
+                    <h1 class="m-0 position-relative">All User
+                        <span class="position-absolute top-0 same_color badge_font start-100 badge rounded-pill">
+                            {{userCount}}
+                        </span>
+                    </h1>
+                </div>
+                <div class="col-auto ms-auto pt-2  ">
+                    <button (click)="openModal(openPop,'i')"
+                        class="btn d-flex align-items-center justify-content-center rounded-pill btn_color same_color"><i
+                            class="bi  bi-plus"></i></button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <table class="table table-striped table-hover  table-bordered ">
+                        <thead>
+                            <tr class="btn_color_2 same_color">
+                                <th scope="col">No.</th>
+                                <th scope="col">First</th>
+                                <th scope="col">Email Id</th>
+                                <th scope="col">Password</th>
+                                <th scope="col">Permission</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let staff of staffData;let i=index">
+                                <th>{{i+1}}</th>
+                                <td>{{staff.name }}</td>
+                                <td>{{staff.email}}</td>
+                                <td>{{staff.plainPass}}</td>
+                                <td>{{staff.permission}}</td>
+                                <td>
+                                    <div><i class="bi bi-pencil-fill text-success cursor_pointer me-3"
+                                            (click)="openModal(openPop,i)"></i>
+                                        <i class="bi bi-trash3-fill cursor_pointer text-danger"
+                                            (click)="openModal(deleteUser,i)"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="loader_body position-relative" *ngIf="loader">
+                    <div class="LOADING">
+                        <div id="loading-bar-spinner" class="spinner">
+                            <div class="spinner-icon"></div>
+                        </div>
+                    </div>
+                    <h4 class="m-0 text_loading ">Loading...</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #openPop>
+    <div class="modal-header same_color">
+        <h5 class="modal-title" id="exampleModalLabel">Add User</h5>
+        <button type="button" class="btn-close" (click)="modalRef.hide();registerform.reset();"></button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="registerform" (ngSubmit)="register()">
+            <div class="mb-3">
+                <label for="exampleInputtext" class="form-label">Permission</label><span class="text-danger">*</span>
+                <select class="form-select" formControlName="Permission" aria-label="Default select example">
+                    <option value="" selected>Open this select menu</option>
+                    <option value="Advertisement">Advertisement</option>
+                    <option value="News">News</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputtext" class="form-label">Full Name</label><span class="text-danger">*</span>
+                <input type="text" placeholder="Enter User Name" formControlName="name" class="form-control"
+                    id="exampleInputtext">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email address</label><span
+                    class="text-danger">*</span>
+                <input type="email" placeholder="Enter User Email" formControlName="email" class="form-control"
+                    id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Password</label><span class="text-danger">*</span>
+                <input formControlName="password" placeholder="Enter User Password" type="text" class="form-control"
+                    id="exampleInputPassword1">
+            </div>
+            <div class="row">
+                <div class="col-auto ms-auto"><button type="submit" data-bs-dismiss="modal" aria-label="Close"
+                        class="btn same_color" [disabled]="registerform.invalid">Submit
+                        <i class="bi bi-send"></i></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</ng-template>
+<ng-template #deleteUser>
+    <div class="modal-header text-white bg-danger p-2">
+        <h5 class="modal-title" id="exampleModalLabel">Delete Sub Category</h5>
+        <button type="button" class="btn-close" (click)="modalRef.hide()"></button>
+    </div>
+    <div class="modal-body p-2">
+        <div class="row mx-auto">
+            <div class="col-12">
+                <p class="m-0 h5">Are You Sure Want To User ?</p>
+            </div>
+            <div class="col-12 d-flex mt-3 align-items-center justify-content-end">
+                <button class="bg-success btn me-3 text-white" (click)="modalRef.hide()">No</button>
+                <button class="bg-danger btn text-white" (click)="deleteUsers()">Yes</button>
+            </div>
+        </div>
+    </div>
+</ng-template>

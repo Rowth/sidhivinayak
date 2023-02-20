@@ -1,0 +1,56 @@
+<div class="bg-light py-5 main-div">
+    <div class="container col-md-12 overflow-hidden col-11 p-0 mt-0 mb-5 pb-5 Radius border bg-white">
+        <div class="row mx-auto same_color">
+            <div class="text-center my-3">
+                <h3 class="fw-bold  mb-0 text-danger">
+                    Videos
+                </h3>
+            </div>
+        </div>
+        <!-- [ngClass]="videoArray?.length==2?'justify-content-start':'justify-content-evenly'" -->
+        <div class="row mx-0 mx-md-4 mt-3 px-2" *ngIf="videoArray?.length>0">
+            <div class="col-md-4 d-flex p-md-0  col-12 mb-3 cursor-pointer " *ngFor="let videoData of videoArray">
+                <div class=" border p-2 width mx-0 mx-md-2 border_radius ">
+                    <iframe class="iframe-width" [src]="videoData.youTubeUrl" allowfullscreen></iframe>
+                    <div class="text-div d-flex ps-2 mt-2">
+                        <p class="m-0" *ngIf="videoData.snippet.title?.length<=70"> {{videoData.snippet.title}}</p>
+                        <p class="m-0" *ngIf="videoData.snippet.title?.length>70">
+                            {{videoData.snippet.title.slice(0,70).concat('...')}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12" *ngIf="PageNotFound">
+            <div class="row mx-auto">
+                <section class="page_404">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 col-md-8 mx-auto">
+                                <div class="text-center">
+                                    <div class="four_zero_four_bg">
+                                        <h1 class="text-center ">404</h1>
+                                    </div>
+                                    <div class="contant_box_404">
+                                        <h3 class="h2">
+                                            Look like you're lost
+                                        </h3>
+                                        <p>the page you are looking for not avaible!</p>
+                                        <a routerLink="/" class="link_404">Go to Home</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div *ngIf="loader"
+            class="col-12 mt-4 d-flex align-items-center justify-content-center flex-column loader_work">
+            <div class="spinner-border" role="status">
+            </div>
+            <div class="heading_text mt-1">
+                <span class="h1 text-dark mb-0 fw-bold">Loading...</span>
+            </div>
+        </div>
+    </div>
+</div>

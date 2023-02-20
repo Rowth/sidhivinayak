@@ -1,0 +1,32 @@
+.dashboard-header {
+    // background-color: #06224a;
+    // position: absolute;
+    // left: 0px;
+    // top: 0;
+    // width: 100%;
+
+    .menu-button {
+        font-size: 2rem;
+    }
+}
+
+.dashboardcompany-logo {
+    img {
+        width: 15rem;
+        border-radius: 12px;
+    }
+}
+
+.dropdown-toggle::after {
+    display: inline-block;
+    content: none;
+}
+
+::-webkit-file-upload-button {
+    display: none;
+}
+
+.image_div {
+    width: 15rem;
+    height: 15rem;
+}

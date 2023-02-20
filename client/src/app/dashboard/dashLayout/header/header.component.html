@@ -1,0 +1,126 @@
+<div class="container-fluid dashboard-header">
+    <div class="row align-items-center ">
+        <div class="col me-auto">
+            <div class="dashboard-header">
+                <a class="btn text-white menu-button btn-default" id="menu-toggle" (click)="clickon($event)"><i
+                        class="bi bi-list text-dark"></i></a>
+            </div>
+        </div>
+        <div class="col d-flex align-items-center justify-content-end">
+            <button class="btn border-danger text-dark " (click)="openModal(openPop)">
+                <i class="fa fa-cogs" aria-hidden="true"></i>
+                Web Setting</button>
+        </div>
+    </div>
+</div>
+
+<ng-template #openPop>
+    <div class="modal-header same_color">
+        <h5 class="modal-title" id="exampleModalLabel">Change Setting</h5>
+        <button type="button" class="btn-close" (click)="modalRef.hide()"></button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="settingForm" (ngSubmit)="sendSetting()">
+            <div class="row">
+                <div class="col-12 mb-3 Category-div " *ngIf="imgURL">
+                    <div class="row d-flex align-items-center">
+                        <div class="col">
+                            <div class="d-flex align-items-center">
+                                <img class="image_div mx-auto my-0 rounded-pill shadow" [src]="imgURL" alt="logo">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 mb-3 Category-div ">
+                    <div class="row d-flex align-items-center">
+                        <div class="col-3">
+                            <label class="form-label">Select Logo</label>
+                        </div>
+                        <div class="col pe-0">
+                            <button type="button" class="same_color w-50 d-flex align-items-center btn">
+                                <i class="fa-solid fa-arrow-up-from-bracket"></i>
+                                <input #file type="file" placeholder="Select Logo" (change)="preview(file.files)"
+                                    accept="image/png,image/gif,image/jpeg" class="ms-2" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="exampleInputtext" class="form-label mb-0">Facebook Link</label>
+                    <input type="text" placeholder="Enter Facebook Link" formControlName="fdLink" class="form-control">
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="exampleInputEmail1" class="form-label mb-0">Instagram Link</label>
+                    <input type="email" placeholder="Enter Instagram Link" formControlName="instLink" class="form-control">
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="exampleInputEmail1" class="form-label mb-0">Twitter Link</label>
+                    <input type="email" placeholder="Enter Twitter Link" formControlName="twLink" class="form-control">
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="exampleInputEmail1" class="form-label mb-0">linkedIn Link</label>
+                    <input type="email" placeholder="Enter Twitter Link" formControlName="linkInLink" class="form-control">
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="exampleInputEmail1" class="form-label mb-0">Name </label>
+                    <input type="email" placeholder="Enter Address" formControlName="offersirName" class="form-control">
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="exampleInputEmail1" class="form-label mb-0">Contact & address </label>
+                    <input type="email" placeholder="Enter Address" formControlName="addressContact" class="form-control">
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="exampleInputEmail1" class="form-label mb-0">Editor Name </label>
+                    <input type="email" placeholder="Enter Address" formControlName="editor" class="form-control">
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="exampleInputEmail1" class="form-label mb-0">Editor Address </label>
+                    <input type="email" placeholder="Enter Address" formControlName="Residentials1" class="form-control">
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="exampleInputEmail1" class="form-label mb-0">Residentials Address </label>
+                    <input type="email" placeholder="Enter Address" formControlName="Residentials2" class="form-control">
+                </div>
+                <!-- <div class="col-12 mb-3">
+                    <label for="exampleInputEmail1" class="form-label mb-0">Residentials 3
+                    </label>
+                    <input type="email" placeholder="Enter Fax" formControlName="Residentials3" class="form-control">
+                </div> -->
+                <div class="col-12 mb-3">
+                    <label for="exampleInputEmail1" class="form-label mb-0">E-mail 1
+                    </label>
+                    <input type="email" placeholder="Enter E-mail" formControlName="email" class="form-control">
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="exampleInputEmail1" class="form-label mb-0">E-mail 2
+                    </label>
+                    <input type="email" placeholder="Enter E-mail" formControlName="email1" class="form-control">
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="exampleInputEmail1" class="form-label mb-0">Phone
+                    </label>
+                    <input type="email" placeholder="Enter Phone" formControlName="phone" class="form-control">
+                </div>
+
+                <div class="col-12 mb-3">
+                    <label for="exampleInputEmail1" class="form-label mb-0">Websites
+                    </label>
+                    <input type="email" placeholder="Enter Websites" formControlName="website" class="form-control">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-auto ms-auto"><button type="submit" class="btn same_color">
+                        <div class="d-flex align-items-center " *ngIf="!loader">
+                            Submit
+                            <i class="bi ms-2 bi-send"></i>
+                        </div>
+                        <div class="spinner-border" *ngIf="loader" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</ng-template>

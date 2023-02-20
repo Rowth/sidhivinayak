@@ -1,0 +1,24 @@
+.radius {
+    border-radius: 18px;
+}
+
+.border-line {
+    padding: 0.06rem 0rem;
+}
+
+.font {
+    font-size: 20px;
+    text-align: justify;
+}
+
+@media (max-width: 768px) {
+    .text {
+        font-size: 20px;
+    }
+    .font_head {
+        font-size: 22px;
+    }
+    .font {
+        font-size: 22px;
+    }
+}

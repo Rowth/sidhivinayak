@@ -1,0 +1,160 @@
+<div>
+    <section class="Lifestyle bg-light py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item text-capitalize cursor_pointer"><a routerLink='/'
+                                    class="text-decoration-none text-dark">Home</a>
+                            </li>
+                            <li class="breadcrumb-item text-capitalize cursor_pointer"
+                                [routerLink]="['/category-news/', catObject?.categoryName]"
+                                *ngIf="catObject?.categoryName">
+                                <a>{{replaceData(catObject?.categoryName)}}</a>
+                            </li>
+                            <li class="breadcrumb-item text-capitalize cursor_pointer"
+                                [routerLink]="['/category-news/',catObject?.categoryName,catObject?.subCategoryName]"
+                                *ngIf="catObject?.subCategoryName">
+                                <a>{{replaceData(catObject?.subCategoryName)}}</a>
+                            </li>
+                            <li class="breadcrumb-item text-capitalize cursor_pointer"
+                                [routerLink]="['/category-news/',catObject?.categoryName,catObject?.subCategoryName,catObject?.subsubCategoryName]"
+                                *ngIf="catObject?.subsubCategoryName">
+                                <a>{{replaceData(catObject?.subsubCategoryName)}}</a>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="container overflow-hidden col-11 p-0 mt-0 mb-5 pb-5 Radius shadow-md border bg-white bg-white">
+            <div class="row same_color">
+                <div class="col-12">
+                    <h1 [ngClass]="catObject?.subCategoryName?'d-none':'d-block'"
+                        class="heading_text py-2 m-0 text-center text-capitalize text-center text-danger"
+                        *ngIf="catObject?.categoryName">{{replaceData(catObject?.categoryName)}}
+                    </h1>
+                    <h1 [ngClass]="catObject?.subsubCategoryName?'d-none':'d-block'"
+                        class="heading_text py-2 m-0 text-center text-capitalize text-center text-danger"
+                        *ngIf="catObject?.subCategoryName">
+                        {{replaceData(catObject?.subCategoryName)}}</h1>
+                    <h1 class="heading_text py-2 m-0 text-center text-capitalize text-center text-danger"
+                        *ngIf="catObject?.subsubCategoryName">
+                        {{replaceData(catObject?.subsubCategoryName)}}</h1>
+                </div>
+            </div>
+
+            <div class="row mx-auto">
+                <div class="col-11 mx-auto">
+                    <div class="row mt-5" *ngIf="adsArrayData[0]?.length!=0">
+                        <div class="col-12 p-0">
+                            <div id="carouselExampleControls" class="carousel slide carousel-fade"
+                                data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <ng-container *ngFor="let adsArray of adsArrayData[0]">
+                                        <div class="carousel-item active" [attr.data-bs-interval]="adsArray?.milliSec">
+                                            <a [href]="adsArray?.url" class="anchor_work d-block" target="_blank"
+                                                [title]="adsArray?.url">
+                                                <img [src]="adsArray?.image" *ngIf="adsArray?.filetype=='image/jpeg'"
+                                                    class="d-block w-100" alt="order1">
+                                                <video *ngIf="adsArray?.filetype!='image/jpeg'" [src]="adsArray?.image"
+                                                    class="video_size m-1 rounded-3" autoplay></video>
+                                            </a>
+                                        </div>
+                                    </ng-container>
+                                </div>
+                                <button class="carousel-control-prev" type="button"
+                                    data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button"
+                                    data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- [ngClass]="allcategorydata?.length==2?'justify-content-start':'justify-content-evenly'" -->
+                    <div class="row my-0 my-md-5">
+                        <div class="col-md-4 mb-3 col-12 p-0  d-flex shadow_card cursor_pointer bg-white"
+                            (click)="goToTop()"
+                            [routerLink]="
+                            ['/single-news/',allcategory?.categroyName|filter,(allcategory?.subCategoryName||'-')|filter,(allcategory?.subSubCateName||'-')|filter,allcategory?.engTitle|filter,allcategory?._id]"
+                            (click)="sendcatdata(allcategory?._id)"
+                            *ngFor="let allcategory of allcategorydata| paginate: { itemsPerPage:limitValue, currentPage: startPage,totalItems:totalNews};">
+                            <div class=" border mx-0 mx-md-2 width border_single p-3">
+                                <img *ngIf="allcategory?.image" class="img-fluid width lifestyle_imgs "
+                                    [src]="allcategory.image" alt="">
+                                <h3 *ngIf="allcategory?.title" class="m-0 pt-2 national-text title_text">
+                                    {{(allcategory.title && allcategory.title?.length
+                                    <=70)?allcategory?.title:allcategory.title?.substr(0,70)+ ( '...' ) | titlecase }}
+                                        </h3>
+                                        <p class="pt-2 m-0 title_text news_div "
+                                            *ngIf="allcategory?.news && allcategory?.image"
+                                            innerHTML="{{(allcategory.news && allcategory.news?.length
+                                                <=70)?allcategory?.news:allcategory.news?.substr(0,70)+ ('...Read More') }}">
+                                        </p>
+                                        <p class="pt-2 m-0  without_image news_div"
+                                            *ngIf="allcategory?.news && !allcategory?.image"
+                                            innerHTML="{{(allcategory.news && allcategory.news?.length
+                                            <=60)?allcategory?.news:allcategory.news?.substr(0,450)+ ('...Read More') }}">
+                                        </p>
+                            </div>
+
+                        </div>
+                        <div *ngIf="loader"
+                            class="col-12 mt-4 d-flex align-items-center justify-content-center flex-column loader_work">
+                            <div class="spinner-border" role="status">
+                            </div>
+                            <div class="heading_text mt-1">
+                                <span class="h1 mb-0 fw-bold">Loading...</span>
+                            </div>
+                        </div>
+                        <div class="row my-3" *ngIf="adsArrayData[1]?.length!=0">
+                            <div class=" col-12">
+                                <div id="carouselExampleControls1" class="carousel slide" data-bs-ride="carousel">
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active"
+                                            *ngFor="let adsArray of adsArrayData[1];let i=index"
+                                            [attr.data-bs-interval]="adsArray?.milliSec">
+                                            <a [href]="adsArray?.url" target="_blank" [title]="adsArray?.url">
+                                                <img [src]="adsArray?.image" *ngIf="adsArray?.filetype=='image/jpeg'"
+                                                    class="d-block w-100" alt="order1">
+                                                <video *ngIf="adsArray?.filetype!='image/jpeg'" [src]="adsArray?.image"
+                                                    class="image_size m-1 rounded-3" autoplay></video>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <button class="carousel-control-prev" type="button"
+                                        data-bs-target="#carouselExampleControls1" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button"
+                                        data-bs-target="#carouselExampleControls1" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 page_work d-flex align-items-center justify-content-end " *ngIf="!loader">
+                            <pagination-controls *ngIf="!this.commingSoon && totalNews>=limitValue"
+                                (pageChange)="loadPage(startPage = $event);goToTop()">
+                            </pagination-controls>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 my-0 my-md-5" *ngIf="this.commingSoon">
+                    <h1 class="heading text-center">Coming Soon<span class="dot">.</span><span class="dot">.</span><span
+                            class="dot">.</span><span class="dot">.</span>
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

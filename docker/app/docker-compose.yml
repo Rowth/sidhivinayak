@@ -1,0 +1,25 @@
+version: "2"
+services:
+  server:
+    image: server
+    build: ../../server
+    ports:
+      - 9000:9000
+    container_name: server
+
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - PORT=9000
+      - BASE_SERVER_API_URL=http://172.31.40.127:4000
+      - TZ=Asia/Kolkata
+      - NODE_OPTIONS=--max-old-space-size=8192
+  client:
+    image: client
+    build: ../../client
+   # ports:
+     # - 4000:4000
+    container_name: client
+    network_mode: host
+    depends_on:
+     - server

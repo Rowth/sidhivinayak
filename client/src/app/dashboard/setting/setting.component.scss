@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.main_body {
+    background-color: #f2f5fc;
+    height: 100vh;
+}
+
+.form_border {
+    border-radius: 0.77rem;
+}
+
+.logo-image {
+    width: 12rem;
+    height: 11rem;
+    border-radius: 100%;
+}
+
+.label-text {
+    font-size: 1.4rem;
+}
+
+.passwordbtn {
+    right: 2%;
+    bottom: 9%;
+}

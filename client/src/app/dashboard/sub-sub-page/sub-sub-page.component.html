@@ -1,0 +1,137 @@
+<div class="container pt-5">
+    <div class="row fa-border shadow border_radius p-2">
+        <div class="col-12 mx-auto">
+            <div class="row mb-2">
+                <div class="col-auto ">
+                    <h1 class="m-0 position-relative">All Sub SubCategories
+                        <span class="position-absolute top-0 same_color badge_font start-100 badge rounded-pill">
+                            {{subSubCount}}
+                        </span>
+                    </h1>
+
+                </div>
+                <div class="col-auto ms-auto pt-2  ">
+                    <button
+                        class="btn d-flex align-items-center justify-content-center rounded-pill btn_color same_color"
+                        (click)="openModal(openPop,'i')"><i class="bi  bi-plus"></i></button>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col">
+                    <table class="table table-striped table-hover  table-bordered ">
+                        <thead>
+                            <tr class="btn_color_2 same_color">
+                                <th scope="col">No.</th>
+                                <th>Category Name</th>
+                                <th scope="col">Sub Category Name</th>
+                                <th scope="col">Sub SubCategory Name</th>
+                                <th scope="col">No. Of News</th>
+                                <th scope="col">View Of Order</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr
+                                *ngFor="let subSubCatData of subSubCatArray|paginate: { itemsPerPage:limitValue, currentPage: startPage,totalItems:subSubCount};let i=index">
+                                <th>{{i+1}}</th>
+                                <td>{{subSubCatData?.category}}</td>
+                                <td>{{subSubCatData?.subcategory }}</td>
+                                <td>{{subSubCatData?.name }}</td>
+                                <td>{{subSubCatData?.count }}</td>
+                                <td>{{subSubCatData?.viewOrder }}</td>
+                                <td>
+                                    <div><i class="bi bi-pencil-fill cursor_pointer me-3"
+                                            (click)="openModal(openPop,i)"></i>
+                                        <i class="bi bi-trash3-fill cursor_pointer text-danger"
+                                            (click)="openModal(deleteCategory,i)"></i>
+                                    </div>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <pagination-controls *ngIf="!loader" (pageChange)="loadPage(startPage = $event)">
+                    </pagination-controls>
+                    <div class="loader_body position-relative" *ngIf="loader">
+                        <div class="LOADING">
+                            <div id="loading-bar-spinner" class="spinner">
+                                <div class="spinner-icon"></div>
+                            </div>
+                        </div>
+                        <h4 class="m-0 text_loading ">Loading...</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #openPop>
+    <div class="modal-header same_color">
+        <h5 class="modal-title" id="exampleModalLabel"><span *ngIf="paticularData">Update</span> <span
+                *ngIf="!paticularData">Add New </span> Sub Category</h5>
+        <button type="button" class="btn-close" (click)="modalRef.hide();subSubCategoryForm.reset()"></button>
+    </div>
+    <div class="modal-body">
+
+        <form [formGroup]="subSubCategoryForm" (ngSubmit)="sendSubCat()">
+            <div class="row">
+                <div class="col-12 mb-2">
+                    <label for="exampleInputtext" class="form-label mb-1">Select Category</label><span
+                        class="text-danger">*</span>
+                    <select formControlName="Catindex" class="form-select" aria-label="Default select example">
+                        <option value="" selected>Select </option>
+                        <option [value]="i" *ngFor="let categoryData of categoryArray;let i=index">
+                            {{categoryData?.categoryName}}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-12 mt-2">
+                    <label for="exampleInputtext" class="form-label mb-1">Sub Category Name</label><span
+                        class="text-danger">*</span>
+                    <select formControlName="subCatindex" class="form-select" aria-label="Default select example">
+                        <option value="" selected>Select</option>
+                        <option [value]="i" *ngFor="let subCatDate of subCatArray;let i=index">
+                            {{subCatDate?.name}}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="col-12 mt-2">
+                    <label for="exampleInputtext" class="form-label mb-1">Sub SubCategory Name</label><span
+                        class="text-danger">*</span>
+                    <input type="text" class="form-control text-capitalize" formControlName="subname"
+                        placeholder="Enter Sub Category Name" id="exampleInputtext">
+                </div>
+                <div class="col-12 mt-2">
+                    <label for="exampleInputtext" class="form-label mb-1">View Of Order</label><span
+                        class="text-danger">*</span>
+                    <input type="number" formControlName="viewOrder" class="form-control" placeholder="Enter OrderI">
+                </div>
+                <div class="col-12 mt-3 d-flex align-items-center justify-content-end ms-auto"><button type="submit"
+                        class="btn same_color">Submit
+                        <i class="bi bi-send"></i></button>
+
+                </div>
+            </div>
+
+        </form>
+    </div>
+</ng-template>
+<ng-template #deleteCategory>
+    <div class="modal-header bg-danger p-2">
+        <h5 class="modal-title" id="exampleModalLabel">Delete Sub SubCategory</h5>
+        <button type="button" class="btn-close" (click)="modalRef.hide()"></button>
+    </div>
+    <div class="modal-body p-2">
+        <div class="row mx-auto">
+            <div class="col-12">
+                <p class="m-0 h5">Are You Sure Want To Delete Sub Sub-Category ?</p>
+            </div>
+            <div class="col-12 d-flex mt-3 align-items-center justify-content-end">
+                <button class="bg-success btn me-3 text-white" (click)="modalRef.hide()">No</button>
+                <button class="bg-danger btn text-white" (click)="deleteSubCat();modalRef.hide()">Yes</button>
+            </div>
+        </div>
+    </div>
+</ng-template>

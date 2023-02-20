@@ -1,0 +1,39 @@
+<section class="login">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-12 mt-5 pt-5 mx-auto">
+                <form [formGroup]="loginForm" (ngSubmit)="login()" class="login-form mt-5 pt-5 ">
+                    <h1>Login</h1>
+                    <div class="form-input-material">
+                        <i class="fa login-icons text-dark fa-user"></i>
+                        <input type="text" name="username" placeholder="Username" id="username" formControlName="user"
+                            class="form-control-material w-100" />
+                        <p class="text-danger" *ngIf="emailnotcrrt">Email Is Not Correct</p>
+                        <!-- <label for="username">Username</label> -->
+
+                    </div>
+                    <div class="form-input-material">
+                        <i class="fa login-icons text-dark fa-eye" *ngIf="typeChange=='password'"
+                            (click)="changetype('text')"></i>
+                        <i class="bi bi-eye-slash text-dark login-icons" *ngIf="typeChange=='text'"
+                            (click)="changetype('password')"></i>
+                        <input [type]="typeChange" placeholder="Password" name="password" id="password"
+                            formControlName="password" autocomplete="off" required
+                            class="form-control-material w-100" />
+                        <p class="text-danger" *ngIf="passnotcrrt">password Is Not Correct</p>
+                        <!-- <label for="password">Password</label> -->
+                    </div>
+                    <p class="text-danger" *ngIf="emailPaswd">Email And Password Is Not Correct</p>
+                    <p class="text-danger" *ngIf="invalid">Invalid Data</p>
+                    <button type="submit" class="btn btn-ghost py-3"><span *ngIf="!loader">Login</span>
+                        <div *ngIf="loader" class="spinner-border text-light" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </button>
+                    <p class="text-end forget_text mt-3 text-decoration-none"> <a [routerLink]="['/forgetpassword']">
+                            forgot password?</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

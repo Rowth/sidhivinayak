@@ -1,0 +1,48 @@
+.lifestyle_imgs {
+    width: 15rem;
+}
+
+.footer_btm {
+    border-bottom: 2px solid black;
+}
+
+.footer_head {
+    font-size: 17px;
+}
+
+ul li {
+    color: #747474;
+    cursor: pointer;
+}
+
+.footer_text {
+    color: #747474;
+}
+
+
+.input-group {
+    border-radius: 15px;
+    border: 1px solid black;
+    overflow: hidden;
+}
+
+.btm_text_footer {
+    font-size: 19px;
+    cursor: pointer;
+}
+
+.copy_right {
+    color: #747474;
+    font-size: 19px;
+}
+
+
+
+
+
+@media (max-width: 575.98px) {
+    .footer_logo{
+        width: 22rem;
+    }
+
+}

@@ -1,0 +1,57 @@
+<div class="seeting main_body">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-10 position-relative mx-auto ">
+                <form [formGroup]="profileForm" (ngSubmit)="onsubmit()" class="positon-relative">
+                    <div class="row mt-5 ">
+                        <div class="col ms-4 ">
+                            <div class="form-div bg-white shadow ">
+                                <div class="head-div border-bottom bg-light">
+                                    <h5 class="text-primary p-3">Admin Details</h5>
+                                </div>
+                                <div class="img  p-4">
+                                    <div class="row mb-3">
+                                        <div class="col">
+                                            <label>Admin Name</label>
+                                            <input type="text" class="form-control ps-3 py-2" formControlName="username"
+                                                placeholder="Enter User Name">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col">
+                                            <label>Email address</label>
+                                            <input type="email" formControlName="email" class="form-control ps-3 py-2"
+                                                placeholder="Enter Email Id">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col me-4">
+                                            <label>Current Password</label>
+                                            <div class="d-flex align-items-center cursor-pointer ">
+                                                <input type="text" readonly class="form-control ps-3 py-2"
+                                                    formControlName="oldPswd" placeholder="Current Password">
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <label>New Password</label>
+                                            <input type="text" formControlName="newPswd" class="form-control ps-3 py-2"
+                                                placeholder="Enter New Password">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col d-flex align-items-center justify-content-end ">
+                                            <button class="bg-primary btn rounded px-3 text-white py-2">Save
+                                                changes</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>

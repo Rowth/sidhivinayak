@@ -1,0 +1,143 @@
+<div class="row mx-auto mainside-bar" id="sidebar" >
+    <div class="col-12 p-0">
+        <div class="row mx-auto mt-3">
+            <div class="col-12 logo-div">
+                <img class="bg-white" [src]="logoImg" alt="">
+            </div>
+        </div>
+        <div class="row mt-4 mx-auto ">
+            <div class="col-12 mb-0 border-bottom p-0">
+                <div class="links-box text-dark cursor-pointer py-2 px-3" [routerLink]="['dasbord-page']" routerLinkActive="bgColor">
+                    <i class="fa text-dark  fa-desktop" aria-hidden="true"></i>
+
+                    <a class="text-decoration-none ms-3 text-capitalize text-dark" routerLinkActive="active">Dashboard</a>
+                </div>
+            </div>
+            <div class="p-0" *ngIf="permissionData?.permission=='News'">
+                <div class="col-12 mb-0  p-0">
+                    <div class="accordion" id="accordionExamples">
+                        <div class="accordion-item border-white border-0 border-start-0 border-end-0">
+                            <h2 class="accordion-header" id="headingOnex">
+                                <button class="accordion-button links-box bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOneNews" aria-expanded="true" aria-controls="collapseOne">
+                                    <div class="d-flex  align-items-center ">
+                                        <i class="fa text-dark fa-list-alt" aria-hidden="true"></i>
+                                        <a
+                                            class="text-decoration-none ms-3 text-dark text-capitalize text-dark">News</a>
+                                    </div>
+                                </button>
+                            </h2>
+                            <div id="collapseOneNews" class="accordion-collapse mb-2 collapse" aria-labelledby="headingOnex" data-bs-parent="#accordionExamples">
+                                <div class="accordion-body py-0 accordionbody-div">
+                                    <div class="row sublinks-box mx-auto">
+                                        <div class="col-12 cursor-pointer pt-2">
+                                            <a class="text-decoration-none text-capitalize text-dark" [routerLink]="['addNewsList']" routerLinkActive="colorActive">All
+                                            News</a>
+                                        </div>
+                                        <div class="col-12 cursor-pointer pt-2">
+                                            <a class="text-decoration-none text-capitalize text-dark" [routerLink]="['addnews']" routerLinkActive="colorActive">Add News</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 mb-0  p-0">
+                    <div class="accordion" id="accordionExamplec">
+                        <div class="accordion-item border-white border-0 border-start-0 border-end-0">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button links-box bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOnecategory" aria-expanded="true" aria-controls="collapseOne">
+                                    <div class="d-flex  align-items-center ">
+                                        <i class="fa text-dark fa-list-alt" aria-hidden="true"></i>
+                                        <a
+                                            class="text-decoration-none ms-3 text-dark text-capitalize text-dark">Categories</a>
+                                    </div>
+                                </button>
+                            </h2>
+                            <div id="collapseOnecategory" class="accordion-collapse mb-2 collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExamplec">
+                                <div class="accordion-body py-0 accordionbody-div">
+                                    <div class="row sublinks-box mx-auto">
+                                        <div class="col-12 cursor-pointer pt-2">
+                                            <a class="text-decoration-none text-capitalize text-dark" [routerLink]="['category']" routerLinkActive="colorActive">All
+                                                Categories</a>
+                                        </div>
+                                        <div class="col-12 cursor-pointer pt-2">
+                                            <a class="text-decoration-none text-capitalize text-dark" [routerLink]="['subCategory']" routerLinkActive="colorActive">Sub
+                                                Categories</a>
+                                        </div>
+                                        <div class="col-12 cursor-pointer pt-2">
+                                            <a class="text-decoration-none text-capitalize text-dark" [routerLink]="['subSubCategory']" routerLinkActive="colorActive">Sub
+                                                SubCategories</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 mb-0 border-bottom p-0">
+                    <div class="links-box text-dark cursor-pointer py-2 px-3" routerLinkActive="bgColor">
+                        <i class="bi text-dark bi-envelope-paper"></i> <a class="text-decoration-none ms-3 text-capitalize text-dark" [routerLink]="['nautreNews']" routerLinkActive="colorActive">Nature Of News</a>
+                    </div>
+                </div>
+                <div class="col-12 mb-0 border-bottom p-0">
+                    <div class="links-box text-dark cursor-pointer py-2 px-3" routerLinkActive="bgColor">
+                        <i class="bi bi-people-fill text-dark"></i>
+                        <a class="text-decoration-none ms-3 text-capitalize text-dark" [routerLink]="['UserPanel']" routerLinkActive="colorActive">User</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 mb-0  p-0">
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item border-white border-0 border-start-0 border-end-0">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button links-box  bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#advetisement" aria-expanded="true" aria-controls="collapseOne">
+                                <div class="d-flex  align-items-center ">
+                                    <i class="bi bi-badge-ad text-dark h4 mb-0"></i>
+                                    <a
+                                        class="text-decoration-none ms-3 text-dark text-capitalize text-dark">Advertisement</a>
+                                </div>
+                            </button>
+                        </h2>
+                        <div id="advetisement" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div class="accordion-body py-0 accordionbody-div">
+                                <div class="row sublinks-box mx-auto">
+                                    <div class="col-12 cursor-pointer py-2">
+                                        <a class="text-decoration-none text-capitalize text-dark" [routerLink]="['advertisement-List']" routerLinkActive="colorActive">All
+                                            Advertisement</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="advetisement" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div class="accordion-body py-0 accordionbody-div">
+                                <div class="row sublinks-box mx-auto">
+                                    <div class="col-12 cursor-pointer py-2">
+                                        <a class="text-decoration-none text-capitalize text-dark" routerLink="ads" routerLinkActive="colorActive">Add
+                                            Advertisement</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row mx-auto px-0 ">
+                <div class="col-12 mb-0 border-bottom p-0">
+                    <div [routerLink]="['Setting']" class="links-box text-dark cursor-pointer py-2 px-3" routerLinkActive="bgColor">
+                        <i class="bi text-dark bi-person-circle"></i>
+                        <a class="text-decoration-none ms-3 text-capitalize text-dark">Pesonal Setting</a>
+                    </div>
+                </div>
+                <div class="col-12 mb-0 border-bottom p-0">
+                    <div class="links-box text-dark cursor-pointer py-2 px-3">
+                        <i class="bi bi-box-arrow-left text-dark"></i>
+                        <a class="text-decoration-none ms-3 text-capitalize text-dark" (click)="logOut()">logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

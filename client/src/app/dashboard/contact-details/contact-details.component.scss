@@ -1,0 +1,68 @@
+.main-div {
+    overflow: hidden;
+    font-family: sans-serif;
+}
+
+.first-row a {
+    font-size: 1.3rem;
+}
+
+.Category-div .star {
+    font-size: 1.5rem;
+}
+
+.form-floating textarea {
+    border: 1px solid rgb(214, 210, 210);
+    border-radius: 3px;
+    width: 100%;
+
+}
+
+::-webkit-file-upload-button {
+    display: none;
+}
+
+.dynamic-image {
+    border-radius: 1rem;
+    height: 9rem;
+    width: 20rem;
+    object-fit: fill;
+}
+
+.delete-icon {
+    font-size: 1.22rem;
+}
+
+.mainform-container {
+    border-radius: 1rem;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+    .label-text {
+        font-size: 1.7rem;
+    }
+}
+
+.arrow-icon {
+    font-size: 1.44rem;
+}
+
+.image_div {
+    width: 28rem;
+    height: 20rem;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.same_color {
+    background-color: #f3c376;
+    -webkit-box-shadow: 0 8px 6px -6px black;
+    -moz-box-shadow: 0 8px 6px -6px black;
+    box-shadow: 0 8px 6px -6px black;
+}
+
+.keyWord_div>.ng-untouched {
+    border: 2px solid #CED4DA !important;    
+    border-radius: 0.4rem;
+}

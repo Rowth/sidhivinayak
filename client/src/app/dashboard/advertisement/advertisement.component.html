@@ -1,0 +1,190 @@
+<div class="main-div bg-light">
+    <div class="container">
+        <div class="row mx-auto justify-content-center py-5">
+            <div class="col">
+                <form [formGroup]="adsForms" (ngSubmit)="sendAds()">
+                    <div class="row mx-auto">
+                        <div class="col mx-auto bg-white overflow-hidden mainform-container p-0">
+                            <div class="row mx-auto">
+                                <div
+                                    class="col-12 py-2 same_color bottom_shadow  d-flex align-items-center justify-content-center first-row">
+                                    <i class="fa-solid ms-3 pointer arrow-icon fa-arrow-left-long"
+                                        [routerLink]="['/admin-panel/advertisement-List']"></i>
+                                    <h1 class="m-0 mx-auto d-flex align-items-center justify-content-center">
+                                        <span class="me-2" *ngIf="!singleAds">Create</span>
+                                        <span class="me-2" *ngIf="singleAds">Edit</span>
+                                        Advertisement
+                                    </h1>
+                                </div>
+                                <div class="col-12 my-4">
+                                    <div class="row mx-auto">
+                                        <div class="col-12 mt-4 Category-div ">
+                                            <div class="row d-flex align-items-center">
+                                                <div class="col-3">
+                                                    <label class=" label-text">Category</label>
+                                                </div>
+                                                <div class="col pe-0">
+                                                    <select class="form-select w-50 text-capitalize py-2 px-3"
+                                                        aria-label="Default select example" formControlName="catIndex">
+                                                        <option value="">Select Category</option>
+                                                        <option [value]="i"
+                                                            *ngFor="let cateData of cateArray;let i=index">
+                                                            {{cateData?.categoryName}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-4 Category-div ">
+                                            <div class="row d-flex align-items-center">
+                                                <div class="col-3">
+                                                    <label class=" label-text">Sub Category</label>
+                                                </div>
+                                                <div class="col pe-0" *ngIf="!SubnNotFound">
+                                                    <select class="form-select w-50 text-capitalize py-2 px-3"
+                                                        aria-label="Default select example"
+                                                        formControlName="subCatIndex">
+                                                        <option value="">Select Sub Category</option>
+                                                        <option [value]="i"
+                                                            *ngFor="let subCatData of subCatArray;let i=index">
+                                                            {{subCatData?.name}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <div class="col pe-0" *ngIf="SubnNotFound">
+                                                    <h4 class="m-0 text-danger">Sub Category Not Found</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-4 Category-div ">
+                                            <div class="row d-flex align-items-center">
+                                                <div class="col-3">
+                                                    <label class=" label-text">Sub SubCategory</label>
+                                                </div>
+                                                <div class="col pe-0" *ngIf="!subSubFound">
+                                                    <select class="form-select w-50 text-capitalize py-2 px-3"
+                                                        aria-label="Default select example"
+                                                        formControlName="subsubCatIndex">
+                                                        <option value="">Select Category</option>
+                                                        <option [value]="i"
+                                                            *ngFor="let subSubData of subSubArray;let i=index">
+                                                            {{subSubData?.name}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <div class="col pe-0" *ngIf="subSubFound">
+                                                    <h4 class="m-0 text-danger">Sub SubCategory Not Found</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-3 Category-div " *ngIf="imgURL">
+                                            <div class="row d-flex align-items-center">
+                                                <div class="col-3">
+                                                </div>
+                                                <div class="col pe-0">
+                                                    <div class="d-flex align-items-center">
+                                                        <img class="image_work rounded-3" [src]="imgURL" alt="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-4 Category-div ">
+                                            <div class="row d-flex align-items-center">
+                                                <div class="col-3">
+                                                    <label class="label-text">Image</label>
+                                                    <span class="star me-2 text-danger">*</span>
+                                                </div>
+                                                <div class="col pe-0">
+                                                    <button type="button"
+                                                        class="same_color w-25 d-flex align-items-center btn">
+                                                        <i class="fa-solid fa-arrow-up-from-bracket"></i>
+                                                        <input #file type="file" accept="image/png,image/gif,image/jpeg"
+                                                            (change)="preview(file.files)" class="ms-2" />
+                                                        <!-- <span class="ms-2">Upload Image</span> -->
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-4 Category-div ">
+                                            <div class="row d-flex align-items-center">
+                                                <div class="col-3">
+                                                    <label class="label-text">Title</label>
+                                                </div>
+                                                <div class="col pe-0">
+                                                    <div class="d-flex w-50 align-items-center">
+                                                        <input type="text" class="form-control"
+                                                            placeholder="Enter Title" formControlName="title">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-4 Category-div ">
+                                            <div class="row d-flex align-items-center">
+                                                <div class="col-3">
+                                                    <label class="label-text">Time</label>
+                                                </div>
+                                                <div class="col pe-0">
+                                                    <div class="d-flex w-50 align-items-center">
+                                                        <input id="appt-time" class="form-control"
+                                                            formControlName="time" type="time" name="appt-time"
+                                                            step="2">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-4 Category-div ">
+                                            <div class="row d-flex">
+                                                <div class="col-3">
+                                                    <label class=" label-text">Url</label>
+                                                    <span class="star me-2 text-danger">*</span>
+                                                </div>
+                                                <div class="col pe-0">
+                                                    <div class="d-flex w-50 align-items-center">
+                                                        <input type="ulr" class="form-control" placeholder="Enter Url"
+                                                            id="inputPassword" formControlName="url">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-4 Category-div ">
+                                            <div class="row d-flex align-items-center">
+                                                <div class="col-3">
+                                                </div>
+                                                <div class="col p-0">
+                                                    <div class="row mx-auto">
+                                                        <div class="col">
+                                                            <button type="submit" [disabled]="adsForms.invalid"
+                                                                class="btn d-flex align-items-center justify-content-center text-dark same_color w-25 px-3 py-2 text-white">
+                                                                <div class="text-work" *ngIf="!btnLoader">
+                                                                    <span class="text-dark me-2">Submit</span>
+                                                                    <i class="bi text-dark bi-send"></i>
+                                                                </div>
+                                                                <div class="spinner-border text-dark" role="status"
+                                                                    *ngIf="btnLoader">
+                                                                    <span class="visually-hidden">Loading...</span>
+                                                                </div>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- ***loader work*** -->
+                                <!-- <div class="loader_body position-relative" *ngIf="loader">
+                                    <div class="LOADING">
+                                        <div id="loading-bar-spinner" class="spinner">
+                                            <div class="spinner-icon"></div>
+                                        </div>
+                                    </div>
+                                    <h4 class="m-0 text_loading ">Loading...</h4>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

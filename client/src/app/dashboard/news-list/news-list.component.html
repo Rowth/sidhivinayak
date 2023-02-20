@@ -1,0 +1,80 @@
+<div class="container pt-5">
+    <div class="row fa-border shadow border_radius p-2">
+        <div class="col-12 mx-auto">
+            <div class="row align-items-center mb-2">
+                <div class="col-auto">
+                    <h1 class="m-0 position-relative">All News
+                        <span
+                            class="position-absolute text-dark top-0 same_color badge_font start-100 badge rounded-pill">
+                            {{totalNews}}
+                        </span>
+                    </h1>
+                </div>
+                <div class="col-auto ms-auto">
+                    <div
+                        class="search_div border rounded-pill overflow-hidden py-1 px-2 d-flex align-items-center justify-content-center">
+                        <div class="inner_input me-2">
+                            <input type="type" class="ps-2 border-0" #search (keyup.enter)="sendSearch(search.value)"
+                                placeholder="search News">
+                            <i *ngIf="search.value" (click)="getNews(0);search.value=''" class="fa search_icon fa-times"
+                                aria-hidden="true"></i>
+                        </div>
+                        <i class="fa search_icon fa-search" (click)="sendSearch(search.value)" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="col-auto pt-2">
+                    <button
+                        class="btn d-flex align-items-center justify-content-center rounded-pill btn_color same_color"><i
+                            class="bi  bi-plus" [routerLink]="['/admin-panel/addnews']"></i></button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <table class="table table-striped table-hover  table-bordered ">
+                        <thead>
+                            <tr class="btn_color_2 same_color">
+                                <th scope="col">No.</th>
+                                <th scope="col">Time</th>
+                                <th scope="col">Heading</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr
+                                *ngFor="let newsData of newsArray| paginate: { itemsPerPage:limitValue, currentPage: startPage,totalItems:totalNews};let i=index">
+                                <!-- <th>{{20*(startPage-1)+(i+1)}}</th> -->
+                                <!-- <th *ngIf="startPage==0 || startPage==1">{{(i+1)}}</th> -->
+                                <!-- <th *ngIf="startPage!=0">{{(10+1)*startPage}}</th> -->
+                                <th>{{i+1}}</th>
+                                <td>{{newsData?.createdAt| date:'fullDate' }}</td>
+                                <td>{{newsData?.title}}</td>
+                                <td>
+                                    <i class="bi pointer h4 bi-eye-fill"
+                                        [routerLink]="['/admin-panel/readNews/',newsData?._id]"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="alert-div" *ngIf="DataNot">
+                        <div class="row">
+                            <div class="col-12">
+                                <h1 class="text-center text-danger">Data not found</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <pagination-controls *ngIf="pageValid" (pageChange)="loadPage(startPage = $event)">
+                    </pagination-controls>
+                    <div class="loader_body position-relative" *ngIf="loader">
+                        <div class="LOADING">
+                            <div id="loading-bar-spinner" class="spinner">
+                                <div class="spinner-icon"></div>
+                            </div>
+                        </div>
+                        <h4 class="m-0 text_loading ">Loading...</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

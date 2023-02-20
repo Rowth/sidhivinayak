@@ -1,0 +1,190 @@
+<div class="bg-light">
+    <div class="container">
+        <div class="container pt-md-5 pt-3">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item cursor_pointer"><a routerLink='/'
+                                    class="text-decoration-none text-dark">Home</a>
+                            </li>
+                            <li class="breadcrumb-item text-capitalize cursor_pointer"
+                                [routerLink]="['/category-news/', breadCrums?.categoryName]"
+                                *ngIf="breadCrums?.categoryName && breadCrums?.categoryName!='undefined'">
+                                <a>{{replaceData(breadCrums?.categoryName)}}</a>
+                            </li>
+                            <li class="breadcrumb-item text-capitalize cursor_pointer"
+                                [routerLink]="['/category-news/',breadCrums?.categoryName,breadCrums?.subCategoryName]"
+                                *ngIf="breadCrums?.subCategoryName && breadCrums?.subCategoryName!='undefined' && breadCrums?.subCategoryName!='-'">
+                                <a>{{replaceData(breadCrums?.subCategoryName)}}</a>
+                            </li>
+                            <li class="breadcrumb-item text-capitalize cursor_pointer"
+                                [routerLink]="['/category-news/',breadCrums?.categoryName,breadCrums?.subCategoryName,breadCrums?.subsubCategoryName]"
+                                *ngIf="breadCrums?.subsubCategoryName && breadCrums?.subsubCategoryName!='undefined' && breadCrums?.subsubCategoryName!='-'">
+                                <a>{{replaceData(breadCrums?.subsubCategoryName)}}</a>
+                            <li class="breadcrumb-item" *ngIf="breadCrums?.engTitle">
+                                <a class="text-capitalize text-dark text-decoration-none"
+                                    *ngIf="breadCrums?.engTitle && breadCrums?.engTitle?.length<=70 && breadCrums?.engTitle!='undefined'">{{replaceData(breadCrums?.engTitle)}}</a>
+                                <a class="text-capitalize text-dark text-decoration-none"
+                                    *ngIf="breadCrums?.engTitle && breadCrums?.engTitle?.length>70 && breadCrums?.engTitle!='undefined'">{{replaceData(breadCrums?.engTitle.slice(0,70).concat('...'))}}</a>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="container pb-5">
+            <div class="row">
+                <div class="col-sm-12 me-3 p-0 col-md-9 col-lg-8">
+                    <div class="row  mx-auto border bg-white rounded_border p-md-4 p-2">
+                        <div class="col ">
+                            <div class="row" *ngIf="oneNews">
+                                <div class="zoom mt-3 mt-md-0" *ngIf="oneNews?.image">
+                                    <img [src]="oneNews?.image" class="img-fluid border single_newsimg"
+                                        [alt]="breadCrums?.id">
+                                </div>
+                                <div class="img-caption mt-2" *ngIf="oneNews?.imageTitle">
+                                    <p class=" m-0 text-muted border-bottom">{{oneNews?.imageTitle}}</p>
+                                </div>
+                                <div *ngIf="oneNews?.natureNews" class="nature-news mt-2">
+                                    <span class="fw-bold text-white p-1 rounded-3 bg-danger m-0">
+                                        {{oneNews?.natureNews}}
+                                    </span>
+                                </div>
+                                <div class="bold_text py-2" *ngIf="oneNews?.title">{{oneNews?.title}}</div>
+                                <div class="bold_text_subtitle py-2" *ngIf="oneNews?.Subtitle">{{oneNews?.Subtitle}}
+                                </div>
+                                <ul class="Unorder-list mb-0 d-block ms-3 ms-md-0 p-0 pt-2">
+                                    <li class="ps-md-3">Shidhivinayak times Published by <span
+                                            class="text-danger fw-bold">{{oneNews?.createrName}}</span> </li>
+                                    <li>:</li>
+                                    <li>{{oneNews?.createdAt|date:'medium'}}</li>
+                                </ul>
+                                <div class="col my-3 ms-2">
+                                    <div class="row mx-auto">
+                                        <div
+                                            class="col-auto mt-1 d-flex align-items-center  justify-content-center text-transparent face_btn">
+                                            <a class="bg-transparent" [href]="facebookUrl" target="_blank"
+                                                [title]="facebookUrl">
+                                                <i class="bi h1 mb-0 face_icon bi-facebook" a></i>
+                                            </a>
+                                        </div>
+                                        <div
+                                            class="col-auto mt-1 d-flex align-items-center mx-3  justify-content-center text-transparent face_btn twitter_btn">
+                                            <a class="bg-transparent" [href]="twitterUrl" target="_blank"
+                                                [title]="twitterUrl">
+                                                <i class="bi h1 mb-0 face_icon bi-twitter" a></i>
+                                            </a>
+                                        </div>
+                                        <div
+                                            class="col-auto mt-1 d-flex align-items-center  justify-content-center text-transparent face_btn whatapp_btn">
+                                            <a class="bg-transparent " [href]="whatsappUrl" target="_blank"
+                                                [title]="whatsappUrl">
+                                                <i class="bi h1 mb-0 face_icon bi-whatsapp" a></i>
+                                            </a>
+                                        </div>
+                                        <!-- <div class="col-auto ps-1">
+                                            <share-buttons [include]="['whatsapp','twitter']" [autoSetMeta]="true"
+                                                twitterAccount="rodrigokamada">
+                                            </share-buttons>
+                                        </div> -->
+                                    </div>
+                                </div>
+                                <div [innerHtml]='newsContent'></div>
+                                <button *ngIf="isReadMore && (oneNews?.news && oneNews.news?.length>=700)"
+                                    class="read_more" type="button" (click)="showText()">
+                                    Read More
+                                </button>
+                            </div>
+                            <div class="row">
+                                <div *ngIf="loader"
+                                    class="col-12 mt-4 d-flex align-items-center justify-content-center flex-column loader_work">
+                                    <div class="spinner-border" role="status">
+                                    </div>
+                                    <div class="heading_text mt-1">
+                                        <span class="h1 mb-0 fw-bold">Loading...</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="row" *ngIf="PageNotFound">
+                                <section class="page_404">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="text-center">
+                                                    <div class="four_zero_four_bg">
+                                                        <h1 class="text-center ">404</h1>
+                                                    </div>
+                                                    <div class="contant_box_404">
+                                                        <h3 class="h2">
+                                                            Look like you're lost
+                                                        </h3>
+                                                        <p>the page you are looking for not avaible!</p>
+                                                        <a routerLink="/" class="link_404">Go to Home</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 p-0 px-3 mt-md-0 mt-3 col-md-3 col-lg-3 ms-md-3 " *ngIf="!PageNotFound">
+                    <div class="row bg-white border rounded_border">
+                        <div class="col text-center">
+                            <div class="text-danger bold_text py-3">Most Popular news</div>
+                        </div>
+                        <div class="col-12 mb-3  cursor_pointer" (click)="goToTop();sendcatdata(categoryData?._id)"
+                            [routerLink]="['/single-news/',categoryData?.categroyName|filter,(categoryData?.subCategoryName|| '-')|filter,(categoryData?.subSubCateName|| '-')|filter,categoryData?.engTitle|filter,categoryData?._id]"
+                            *ngFor="let categoryData of categoryNews">
+                            <div class="row rounded_border py-3 mx-auto border">
+                                <div *ngIf="categoryData?.image">
+                                    <div class="col-12">
+                                        <img class="rounded-3 imge_category" [src]="categoryData?.image" alt="">
+                                    </div>
+                                    <div class="col-12 px-0 px-mx-3 cursor_pointer  mt-3">
+                                        <h6 class="m-0" *ngIf="categoryData?.title?.length<=50">
+                                            {{categoryData?.title}}</h6>
+                                        <h6 class="m-0" *ngIf="categoryData?.title?.length>50">
+                                            {{categoryData?.title.slice(0,50).concat('...Read More')}}</h6>
+                                    </div>
+                                </div>
+                                <div *ngIf="!categoryData?.image">
+                                    <div class="col-12">
+                                    </div>
+                                    <div class="col-12 px-3 cursor_pointer mt-2">
+                                        <h6 class="m-0" *ngIf="categoryData.title?.length<=50">
+                                            {{categoryData?.title}}</h6>
+                                        <h6 class="m-0" *ngIf="categoryData.title?.length>50">
+                                            {{categoryData?.title.slice(0,50).concat('...Read More')}}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="categoryNews?.length >1"
+                            class="col-12 mb-3 d-flex justify-content-between align-items-center ">
+                            <button class="btn same_color me-2 w-50" *ngIf="categoryNews?.length<=10"
+                                (click)="loadMore('more')">
+                                <span *ngIf="!moreLoader">Load
+                                    More</span>
+                                <div *ngIf="moreLoader" class="spinner-border" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </button>
+                        </div>
+                        <div class="col-12 my-5" *ngIf="comming">
+                            <h4 class="heading text-center">Coming Soon<span class="dot">.</span><span
+                                    class="dot">.</span><span class="dot">.</span><span class="dot">.</span>
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

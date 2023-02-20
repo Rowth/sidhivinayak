@@ -1,0 +1,38 @@
+<div>
+    <section class="Lifestyle bg-light py-5">
+        <div class="container overflow-hidden col-11 p-0 mt-0 mb-5 pb-5 Radius shadow bg-white bg-white">
+            <div class="row same_color">
+                <div class="col-12">
+                    <h1 class="heading_text py-2 m-0 text-center text-capitalize text-center text-danger">
+                        Search </h1>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-10 mx-auto">
+                    <!-- [ngClass]="searchData?.length==2?'justify-content-start':'justify-content-evenly'" -->
+                    <div class="row my-3" >
+                        <div class="col-md-4 mb-3  border_single col-12 p-0 d-flex shadow_card cursor_pointer bg-white" (click)="goToTop()" [routerLink]="
+                            ['/single-news/',allcategory?.categroyName|filter,(allcategory?.subCategoryName||'-')|filter,(allcategory?.subSubCateName||'-')|filter,allcategory?.engTitle|filter,allcategory?._id]" *ngFor="let allcategory of searchData">
+                            <div class="border mx-2 p-3 border_single">
+                                <img *ngIf="allcategory?.image" class="img-fluid width lifestyle_imgs " [src]="allcategory.image" alt="">
+                                <h3 *ngIf="allcategory?.title" class="m-0 pt-2 national-text title_text">
+                                    {{(allcategory.title && allcategory.title?.length
+                                    <=70)?allcategory?.title:allcategory.title?.substr(0,70)+ ( '...') | titlecase }} </h3>
+                                        <p class="pt-2 m-0 title_text news_div " *ngIf="allcategory?.news && allcategory?.image" innerHTML="{{(allcategory.news && allcategory.news.length
+                                                <=70)?allcategory?.news:allcategory.news?.substr(0,70)+ ('...Read More') }}">
+                                        </p>
+                                        <p class="pt-2 m-0  without_image news_div" *ngIf="allcategory?.news && !allcategory?.image" innerHTML="{{(allcategory.news && allcategory.news.length
+                                            <=60)?allcategory?.news:allcategory.news?.substr(0,450)+ ('...Read More') }}">
+                                        </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 my-5" *ngIf="searchData?.length==0">
+                    <h1 class="heading text-center">Coming Soon<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span><span class="dot">.</span>
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

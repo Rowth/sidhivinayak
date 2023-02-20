@@ -1,0 +1,132 @@
+html {
+    scroll-behavior: smooth;
+}
+
+.loader_body {
+    height: 25rem;
+    // border: 2px solid red;
+
+}
+
+
+#loading-bar-spinner.spinner {
+    left: 50%;
+    margin-left: -20px;
+    top: 50%;
+    margin-top: -20px;
+    position: absolute;
+    z-index: 19 !important;
+    animation: loading-bar-spinner 400ms linear infinite;
+}
+
+
+
+#loading-bar-spinner.spinner .spinner-icon {
+    width: 135px;
+    height: 135px;
+    border: solid 4px transparent;
+    border-top-color: #F3C376 !important;
+    border-left-color: #F3C376 !important;
+    border-radius: 50%;
+    border-width: 17px;
+}
+
+@keyframes loading-bar-spinner {
+    0% {
+        transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+
+.text_loading {
+    left: 49%;
+    margin-left: -20px;
+    top: 80%;
+    font-size: 2rem;
+    margin-top: -20px;
+    position: absolute;
+}
+
+.iframe-width {
+    width: -webkit-fill-available;
+    height: 19.4rem;
+    border-radius: 15px;
+}
+
+.national-text {
+    font-size: 25px;
+}
+
+.lifestyle_imgs {
+    width: 25rem;
+    height: 13rem;
+}
+
+.heading {
+    font-size: 50px;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 0;
+    line-height: 1;
+    font-weight: 700;
+}
+
+.dot {
+    color: #F3C376;
+}
+
+//     width: 20rem;
+//     height: 11rem;
+// }
+
+
+.Radius {
+    border-radius: 1.5rem;
+    // overflow: hidden;
+}
+
+.same_color {
+    background-color: #f3c376;
+    -webkit-box-shadow: 0 8px 6px -6px black;
+    -moz-box-shadow: 0 8px 6px -6px black;
+    box-shadow: 0 8px 6px -6px black;
+}
+
+
+.shadow_card {
+    border-radius: 10px;
+
+    img {
+        border-radius: 10px;
+
+    }
+}
+
+.heading {
+    font-size: 50px;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 0;
+    line-height: 1;
+    font-weight: 700;
+}
+
+.dot {
+    color: #F3C376;
+}
+
+.loader_work .spinner-border {
+    width: 15rem;
+    height: 15rem;
+    border: 1.25em solid #f3c376;
+    border-right-color: transparent;
+}
+
+::ng-deep.page_work .ngx-pagination .current {
+    background-color: #f3c376;
+    color: #000;
+}

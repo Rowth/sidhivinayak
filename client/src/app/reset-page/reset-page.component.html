@@ -1,0 +1,30 @@
+<section class="login">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-12 mt-5 pt-5 mx-auto">
+                <form class="login-form mt-5 pt-5 ">
+                    <h1>Reset Password</h1>
+                    <div class="form-input-material">
+                        <i class="fa login-icons text-dark fa-eye"></i>
+                        <input type="password" placeholder="New Password" name="password" id="password"
+                            autocomplete="off" [formControl]="newPswd" required class="form-control-material" />
+                    </div>
+                    <div class="form-input-material">
+                        <i class="fa login-icons text-dark fa-eye"></i>
+                        <input type="password" placeholder="Confirm Password" name="password" id="password"
+                            autocomplete="off" [formControl]="conformPswd" required class="form-control-material" />
+                    </div>
+                    <button type="submit" class="btn btn-ghost py-3" [disabled]="newPswd.invalid&&conformPswd.invalid"
+                        (click)="sendData()"><span *ngIf="!loader">Reset
+                            Password</span>
+                        <div class="spinner-border text-light" *ngIf="loader">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </button>
+                    <p class="text-end forget_text mt-3 text-decoration-none"> <a [routerLink]="['/admin-login']">
+                            Login</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

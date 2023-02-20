@@ -1,0 +1,78 @@
+.btn_color {
+    font-size: 2rem;
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.same_color {
+    background-color: #f3c376;
+    -webkit-box-shadow: 0 8px 6px -6px black;
+    -moz-box-shadow: 0 8px 6px -6px black;
+    box-shadow: 0 8px 6px -6px black;
+}
+
+
+.btn_color_2 {
+    font-size: 19px;
+}
+
+.cursor_pointer {
+    cursor: pointer;
+}
+
+.badge_font {
+    font-size: 0.88rem !important;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+// ######loader work####
+.loader_body {
+    height: 25rem;
+}
+
+#loading-bar-spinner.spinner {
+    left: 50%;
+    margin-left: -20px;
+    top: 50%;
+    margin-top: -20px;
+    position: absolute;
+    z-index: 19 !important;
+    animation: loading-bar-spinner 400ms linear infinite;
+}
+
+
+
+#loading-bar-spinner.spinner .spinner-icon {
+    width: 135px;
+    height: 135px;
+    border: solid 4px transparent;
+    border-top-color: #F3C376 !important;
+    border-left-color: #F3C376 !important;
+    border-radius: 50%;
+    border-width: 17px;
+}
+
+@keyframes loading-bar-spinner {
+    0% {
+        transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+
+.text_loading {
+    left: 49%;
+    margin-left: -20px;
+    top: 80%;
+    font-size: 2rem;
+    margin-top: -20px;
+    position: absolute;
+}

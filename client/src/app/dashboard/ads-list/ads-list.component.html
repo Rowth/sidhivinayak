@@ -1,0 +1,110 @@
+<div class="container pt-5">
+    <div class="row fa-border shadow border_radius p-2">
+        <div class="col-12 mx-auto">
+            <div class="row mb-2">
+                <div class="col-auto">
+                    <h1 class="m-0 position-relative">All Advertisement
+                        <span class="position-absolute top-0 same_color badge_font start-100 badge rounded-pill">
+                            {{adsCount}}
+                        </span>
+                    </h1>
+                </div>
+                <div class="col-auto ms-auto pt-2">
+                    <button
+                        class="btn d-flex align-items-center justify-content-center rounded-pill btn_color same_color"><i
+                            class="bi  bi-plus" routerLink="/admin-panel/ads"></i></button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <table class="table table-striped table-hover  table-bordered ">
+                        <thead>
+                            <tr class="btn_color_2 same_color">
+                                <th scope="col">No.</th>
+                                <th scope="col">Data</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Sub-Category</th>
+                                <th scope="col">Sub-SubCategory</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Time</th>
+                                <th scope="col">Url</th>
+                                <th scope="col">View Of Order</th>
+                                <th scope="col">Ads Image</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr  *ngFor="let adsData of adsArray;let i=index">
+                                <th>{{i+1}}</th>
+                                <td scope="col">{{adsData?.updatedAt| date:'fullDate' }}</td>
+                                <td><span *ngIf="!adsData?.adsCategoryName"><i class="fa fa-minus"
+                                            aria-hidden="true"></i>
+                                    </span>
+                                    <span *ngIf="adsData?.adsCategoryName">{{adsData?.adsCategoryName}}</span>
+                                </td>
+                                <td scope="col">
+                                    <span *ngIf="!adsData?.adsSubcateName"><i class="fa fa-minus"
+                                            aria-hidden="true"></i>
+                                    </span>
+                                    <span *ngIf="adsData?.adsSubcateName">{{adsData?.adsSubcateName}}</span>
+                                </td>
+                                <td scope="col">
+                                    <span *ngIf="!adsData?.adsSubSubCateName"><i class="fa fa-minus"
+                                            aria-hidden="true"></i>
+                                    </span>
+                                    <span *ngIf="adsData?.adsSubSubCateName">{{adsData?.adsSubSubCateName}}</span>
+                                </td>
+                                <td scope="col"><span *ngIf="!adsData?.title"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                                    <span *ngIf="adsData?.title">{{adsData?.title}}</span>
+                                </td>
+                                <td scope="col">{{adsData?.time}}</td>
+                                <td scope="col"><a class="url_div d-block" [href]="adsData?.url" target="_blank" [title]="adsData?.url">{{adsData?.url}}</a>
+                                </td>
+                                <td>{{adsData?.viewOrder}}</td>
+                                <td>
+                                    <video *ngIf="adsData?.filetype=='video/mp4'" [src]="adsData?.image"
+                                        class="image_size rounded-3" controls></video>
+                                    <a *ngIf="adsData?.filetype!='video/mp4'" [href]="adsData?.url" target="_blank"
+                                        [title]="adsData?.url"><img class="image_size rounded-3" [src]="adsData?.image"
+                                            alt=""></a>
+                                </td>
+                                <td>
+                                    <div><i class="bi bi-pencil-fill text-success cursor_pointer me-3"
+                                            [routerLink]="['/admin-panel/ads', adsData?._id]"></i>
+                                        <i class="bi bi-trash3-fill cursor_pointer text-danger"
+                                            (click)="openModal(deleteAds,adsData?._id)"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="loader_body position-relative" *ngIf="loader">
+                        <div class="LOADING">
+                            <div id="loading-bar-spinner" class="spinner">
+                                <div class="spinner-icon"></div>
+                            </div>
+                        </div>
+                        <h4 class="m-0 text_loading ">Loading...</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #deleteAds>
+    <div class="modal-header text-white bg-danger p-2">
+        <h5 class="modal-title" id="exampleModalLabel">Delete Ads</h5>
+        <button type="button" class="btn-close" (click)="modalRef.hide()"></button>
+    </div>
+    <div class="modal-body p-2">
+        <div class="row mx-auto">
+            <div class="col-12">
+                <p class="m-0 h5">Are You Sure Want To Delete Ads?</p>
+            </div>
+            <div class="col-12 d-flex mt-2 align-items-center justify-content-end">
+                <button class="bg-success btn me-3 text-white" (click)="modalRef.hide()">No</button>
+                <button class="bg-danger btn text-white" (click)="deleteAdsValue();modalRef.hide()">Yes</button>
+            </div>
+        </div>
+    </div>
+</ng-template>

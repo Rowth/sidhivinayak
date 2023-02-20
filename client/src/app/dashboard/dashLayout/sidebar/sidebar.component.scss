@@ -1,0 +1,87 @@
+.mainside-bar {
+    height: 100vh;
+    // background-color: #06224a;
+    transition: 2s !important;
+    display: flex;
+
+}
+
+
+
+
+.links-box,
+.sublinks-box {
+    color: #fff !important;
+    // background-color: #06224a;
+
+    // a,
+    // .bi {
+    //     // color: #fff;
+    // }
+
+}
+
+.links-box {
+    font-size: 1.44rem;
+    // background-color: #06224a;
+
+    &:hover {
+        background-color: #F3C376 !important;
+
+        a,
+        .bi {
+            color: white !important;
+        }
+    }
+}
+
+.sublinks-box {
+    font-size: 1.11rem;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.accordion-button:not(.collapsed) {
+    color: #0c63e4;
+
+    &:hover {
+        background-color: #F3C376 !important;
+        color: white !important;
+    }
+
+    // background-color: aquamarine!important;
+    // background-color: #06224a !important;
+    box-shadow: inset 0 -1px 0 rgb(0 0 0 / 13%);
+}
+
+.logo-div img {
+    width: -webkit-fill-available;
+    // height: 7rem;
+}
+
+.active {
+    color: #fff !important;
+}
+
+.colorActive {
+    font-weight: bold;
+    color: #000 !important;
+}
+
+.bgColor {
+    background-color: #F3C376 !important;
+}
+
+@media only screen and (max-width:480px) {
+
+    .dashboardcompany-logo {
+        img {
+            width: 10rem;
+
+        }
+    }
+
+
+}

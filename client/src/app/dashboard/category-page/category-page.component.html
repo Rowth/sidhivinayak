@@ -1,0 +1,109 @@
+<div class="container pt-5">
+    <div class="row fa-border shadow border_radius p-2">
+        <div class="col-12 mx-auto">
+            <div class="row mb-2">
+                <div class="col-auto ">
+
+                    <h1 class="m-0 position-relative">All Categories
+                        <span class="position-absolute top-0 same_color badge_font start-100 badge rounded-pill">
+                            {{counterData}}
+                        </span>
+                    </h1>
+
+                </div>
+                <div class="col-auto ms-auto pt-2  ">
+                    <button
+                        class="btn d-flex align-items-center justify-content-center rounded-pill btn_color same_color"><i
+                            class=" bi  bi-plus" (click)="openModal(openCategory,'i')"></i></button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <table class="table table-striped table-hover  table-bordered ">
+                        <thead>
+                            <tr class="btn_color_2 same_color">
+                                <th scope="col">No.</th>
+                                <th scope="col">Category Name</th>
+                                <th scope="col">No. Of News</th>
+                                <th scope="col">View of Order</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr
+                                *ngFor="let categoryData of categoryArray |paginate: { itemsPerPage:limitValue, currentPage: startPage,totalItems:counterData};let i=index">
+                                <th>{{i+1}}</th>
+                                <td>{{categoryData?.categoryName }}</td>
+                                <td>{{categoryData?.count}}</td>
+                                <td scope="col">{{categoryData?.viewOrder}}</td>
+                                <td>
+                                    <div><i class="bi bi-pencil-fill text-success cursor_pointer me-3"
+                                            (click)="openModal(openCategory,i)"></i>
+                                        <i class="bi bi-trash3-fill cursor_pointer text-danger"
+                                            (click)="openModal(deleteCategory,i)"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <pagination-controls *ngIf="counterData>limitValue" (pageChange)="loadPage(startPage = $event)">
+                    </pagination-controls>
+                    <div class="loader_body position-relative" *ngIf="loader">
+                        <div class="LOADING">
+                            <div id="loading-bar-spinner" class="spinner">
+                                <div class="spinner-icon"></div>
+                            </div>
+                        </div>
+                        <h4 class="m-0 text_loading ">Loading...</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #openCategory>
+    <div class="modal-header same_color">
+        <h5 class="modal-title" id="exampleModalLabel">
+            <span *ngIf="editCat">Update</span> <span *ngIf="!editCat">Add New</span> Category
+        </h5>
+        <button type="button" class="btn-close" (click)="modalRef.hide();categoryForm.reset()"></button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="categoryForm" (ngSubmit)="sendCategory()">
+            <div class="mb-3">
+                <label for="exampleInputtext" class="form-label">Category Name</label><span class="text-danger">*</span>
+                <input type="text" formControlName="category" class="form-control" placeholder="Enter Category Name"
+                    id="exampleInputtext">
+            </div>
+            <div class="mb-3" *ngIf="editCat">
+                <label for="exampleInputtext" class="form-label"> Category Order</label><span
+                    class="text-danger">*</span>
+                <input type="Number" formControlName="order" class="form-control" placeholder="Enter Category Order"
+                    id="exampleInputtext">
+            </div>
+            <div class="row">
+                <div class="col-auto ms-auto"><button type="submit" [disabled]="categoryForm.invalid"
+                        class="btn same_color">Submit
+                        <i class="bi bi-send"></i></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</ng-template>
+<ng-template #deleteCategory>
+    <div class="modal-header bg-danger">
+        <h5 class="modal-title" id="exampleModalLabel">Delete Category</h5>
+        <button type="button" class="btn-close" (click)="modalRef.hide();categoryForm.reset()"></button>
+    </div>
+    <div class="modal-body p-2">
+        <div class="row mx-auto">
+            <div class="col-12">
+                <p class="m-0 h5">Are You Want To Delete Category ?</p>
+            </div>
+            <div class="col-12 d-flex align-items-center justify-content-end">
+                <button class="bg-success btn me-3 text-white" (click)="modalRef.hide()">No</button>
+                <button class="bg-danger btn text-white" (click)="deleteCat()">Yes</button>
+            </div>
+        </div>
+    </div>
+</ng-template>

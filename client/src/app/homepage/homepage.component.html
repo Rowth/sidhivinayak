@@ -1,0 +1,302 @@
+<div class="container-fluid  px-0 bg-light" *ngIf="arrayHome?.length>0">
+    <div class="marque-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 bg-danger text-white">
+                    <marquee width="100%" direction="left" height="40px" onmouseover="this.stop();" loop="1000"
+                        onmouseout="this.start();">
+                        <div class="d-flex justify-content-center align-items-center width_loop">
+                            <div class="img-text" (click)="goToTop()" (click)="sendcatdata(data?._id)"
+                                [routerLink]="['/single-news/',data?.categroyName,data?.subCategoryName,data?.subSubCateName,data?.engTitle|filter,data?._id]"
+                                *ngFor="let data of arrayHome.slice(0,4)">
+                                <div>
+                                    <img *ngIf="data?.image" class="single_imgmarquee mx-3" [src]="data?.image" alt="">
+                                    <span class="text-white ms-2">{{(data?.title && data.title?.length
+                                        <=50)?data.title?.concat('...ReadMore'):data.title?.slice(0,50).concat('...ReadMore')}}
+                                            </span>
+                                </div>
+                            </div>
+                        </div>
+                    </marquee>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="section_one bg-light">
+        <div class="container">
+            <div class="row mx-auto mt-3 mt-md-5" *ngIf="adsArrayData[0]?.length!=0">
+                <div class="col-12 p-0">
+                    <div id="carouselExampleControls" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active" *ngFor="let adsArray of adsArrayData[0]"
+                                [attr.data-bs-interval]="adsArray?.milliSec">
+                                <a [href]="adsArray?.url" class="anchor_work d-block" target="_blank"
+                                    [title]="adsArray?.url">
+                                    <img [src]="adsArray?.image" *ngIf="adsArray?.filetype=='image/jpeg'"
+                                        class="d-block w-100" alt="order1">
+                                    <video *ngIf="adsArray?.filetype!='image/jpeg'" [src]="adsArray?.image"
+                                        class="video_size m-1 rounded-3" autoplay></video>
+                                </a>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-md-6 col-12">
+                            <div class="row">
+                                <div class="col-md col-12 my-4">
+                                    <div class="card mb-3">
+                                        <div (click)="sendcatdata(data?._id);goToTop()"
+                                            [routerLink]="['/single-news/',data?.categroyName|filter,(data?.subCategoryName||'-')|filter,(data?.subSubCateName||'-')|filter,data?.engTitle|filter,data?._id]"
+                                            *ngFor="let data of arrayHome?.slice(0,1)" class="card-body circcle_img ">
+                                            <div>
+                                                <div *ngIf="data?.image" class="zoom">
+                                                    <img class="single_img" [src]="data?.image" alt="">
+                                                </div>
+                                                <div class="tittles mt-md-0" [ngClass]="data?.image?'mt-3':'mt-0'">
+                                                    <p class="fw-bold tittle m-0">
+                                                        {{data.title?.length
+                                                        <=60?data.title:data.title.slice(0,60).concat('...Read')}} </p>
+                                                            <ul class="Unorder-list mb-0 d-block p-0 ">
+                                                                <li class=" fw-bold">Published</li>
+                                                                <li>:</li>
+                                                                <li>{{data?.createdAt|date:'medium'}}</li>
+                                                                <li class="ms-2">
+                                                                    <i class="fa h4 mb-0 text-dark fa-share-alt"
+                                                                        aria-hidden="true"></i>
+                                                                </li>
+                                                            </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <div (click)="sendcatdata(data?._id)"
+                                        [routerLink]="['/single-news/',data?.categroyName,(data?.subCategoryName||'-'),(data?.subSubCateName||'-'),data?.engTitle|filter,data?._id]"
+                                        (click)="goToTop()" *ngFor="let data of arrayHome?.slice(1,5)"
+                                        class="card mb-3 ">
+                                        <div class="card-body circcle_img ">
+                                            <div class="top-img row ">
+                                                <div class=" col-md-8 order-2 order-md-1  col-12 left-text">
+                                                    <div class="tittles mt-md-0" [ngClass]="data?.image?'mt-3':'mt-0'">
+                                                        <p class="fw-bold tittle m-0">
+                                                            {{data.title?.length
+                                                            <=60?data?.title:data.title?.slice(0,60).concat('...')}}
+                                                                </p>
+                                                                <p class="fw-ligth news_div m-0"
+                                                                    innerHTML="{{data.news?.length
+                                                                    <=100?data.news?.concat('...Read More'):data.news?.slice(0,100).concat('...Read More')}}">
+                                                                </p>
+                                                                <ul class="Unorder-list mb-0 d-block p-0">
+                                                                    <li class=" fw-bold">Published</li>
+                                                                    <li>:</li>
+                                                                    <li>{{data?.createdAt|date:'medium'}}</li>
+                                                                    <li class="ms-2">
+                                                                        <i class="fa h4 text-dark m-0 fa-share-alt"
+                                                                            aria-hidden="true"></i>
+                                                                    </li>
+                                                                </ul>
+                                                    </div>
+                                                </div>
+                                                <div *ngIf="data?.image"
+                                                    class=" col-md-4 order-1 order-md-2  col-12 right-img">
+                                                    <img [src]="data?.image">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="row mt-4">
+                                <div class="col-12 mb-4" *ngIf="singleVideo">
+                                    <div class="card ">
+                                        <div class="card-body" *ngFor="let singleData of singleVideo">
+                                            <iframe class="iframe-width" [src]="singleData?.youTubeUrl"
+                                                allowfullscreen></iframe>
+                                            <div class="text-div d-flex ps-3 mt-1">
+                                                <p class="m-0"> {{singleData.snippet?.title}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 mt-3">
+                                    <div (click)="sendcatdata(data?._id)"
+                                        [routerLink]="['/single-news/',data?.categroyName,(data?.subCategoryName||'-'),(data?.subSubCateName||'-'),data?.engTitle|filter,data?._id]"
+                                        (click)="goToTop()" *ngFor="let data of arrayHome.slice(5,11)"
+                                        class="card mb-3 ">
+                                        <div class="card-body circcle_img ">
+                                            <div class=" row top-img  ">
+                                                <div class=" col-md-8 order-2 order-md-1  col-12 left-text">
+                                                    <div class="tittles mt-md-0 " [ngClass]="data?.image?'mt-3':'mt-0'">
+                                                        <p class="fw-bold tittle m-0">
+                                                            {{data.title?.length
+                                                            <=75?data.title?.concat('...'):data.title?.slice(0,75).concat('...')}}
+                                                                </p>
+                                                                <p class="fw-ligth news_div tittle m-0"
+                                                                    innerHTML="{{data.news?.length
+                                                            <=100?data?.news?.concat('...Read'):data.news?.slice(0,100).concat('...Read')}}">
+                                                                </p>
+                                                                <ul class="Unorder-list mb-0 d-block p-0 ">
+                                                                    <li class=" fw-bold">Published</li>
+                                                                    <li>:</li>
+                                                                    <li>{{data.createdAt|date:'medium'}}</li>
+                                                                    <li class="ms-2"> <i
+                                                                            class="fa h4 text-dark m-0 fa-share-alt"
+                                                                            aria-hidden="true"></i>
+                                                                    </li>
+                                                                </ul>
+                                                    </div>
+                                                </div>
+                                                <div *ngIf="data?.image" class=" col-md-4 order-1 order-md-2  col-12
+                                                      right-img">
+                                                    <img [src]="data.image">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- *****top news section here***** -->
+    <section class="National pb-5" *ngFor="let categoryData of categoryArray;let i=index">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="heading_text pt-0 pt-md-4 fw-bold ms-3 ms-md-0 text-uppercase">
+                        <span (click)="goToTop()" class="cursor_pointer" (click)="sendcatdata(categoryData?.categoryId)"
+                            [routerLink]="['/category-news/',categoryData?.categroyName]">{{categoryData?.categroyName}}</span>
+                    </h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 mx-0">
+                    <div class="row justify-content-between">
+                        <div class="col position-relative">
+                            <div class="row" *ngFor="let data1 of cateWiseArray;let i=index">
+                                <div class="col-12 col-md-6" *ngFor="let data of data1;let i=index">
+                                    <div *ngIf="categoryData?.categoryId==data.categoryId"
+                                        class="row  card px-3  bg-white mb-4 mx-auto py-3 shadow_card cursor_pointer "
+                                        (click)="goToTop()" (click)="sendcatdata(data?._id)"
+                                        [routerLink]="['/single-news/',data?.categroyName|filter,(data?.subCategoryName||'-')|filter,(data?.subSubCateName||'-')|filter,data?.engTitle|filter,data?._id]">
+                                        <div class="col-12">
+                                            <div class="row">
+                                                <div *ngIf="data?.image" class="col-md-4 px-0 col-12">
+                                                    <img [src]="data?.image" class="width">
+                                                </div>
+                                                <div
+                                                    class="col-md-8 px-0 px-md-2 mt-2 mt-md-0  d-flex flex-column col-12 ">
+                                                    <div class="tittles mt-md-0" [ngClass]="data?.image?'mt-3':'mt-0'">
+                                                        <p class="fw-bold news_paraText title_heigth tittle m-0">
+                                                            {{data.title?.length
+                                                            <=75?data.title:data.title?.slice(0,75).concat('...')}} </p>
+                                                    </div>
+                                                    <p class="fw-ligth news_paraText news_div tittle m-0"
+                                                        innerHTML="{{data.news?.length
+                                                                <=90?data?.news?.concat('...Read More'):data.news?.slice(0,92).concat('...Read More')}}">
+                                                    </p>
+                                                    <ul class="Unorder-list mt-auto mb-0 d-block p-0 ">
+                                                        <li class=" fw-bold">Published</li>
+                                                        <li>:</li>
+                                                        <li>{{data.createdAt|date:'medium'}}</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-5 mb-3" *ngIf="i==1 && adsArrayData[1]?.length!=0">
+                                <div class="col-12">
+                                    <div id="carouselExampleControls1" class="carousel slide" data-bs-ride="carousel">
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active" *ngFor="let adsArray of adsArrayData[1]"
+                                                [attr.data-bs-interval]="adsArray?.milliSec">
+                                                <a [href]="adsArray?.url" class="anchor_work d-block" target="_blank"
+                                                    [title]="adsArray?.url">
+                                                    <img [src]="adsArray?.image"
+                                                        *ngIf="adsArray?.filetype=='image/jpeg'" class="d-block w-100"
+                                                        alt="order1">
+                                                    <video *ngIf="adsArray?.filetype!='image/jpeg'"
+                                                        [src]="adsArray?.image" class="video_size m-1 rounded-3"
+                                                        autoplay></video>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <button class="carousel-control-prev" type="button"
+                                            data-bs-target="#carouselExampleControls1" data-bs-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Previous</span>
+                                        </button>
+                                        <button class="carousel-control-next" type="button"
+                                            data-bs-target="#carouselExampleControls1" data-bs-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Next</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" *ngIf="i==cateWiseArray?.length-1 && adsArrayData[2]?.length!=0">
+                <div class=" col-12">
+                    <div id="carouselExampleControls1" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active" *ngFor="let adsArray of adsArrayData[2];let i=index"
+                                [attr.data-bs-interval]="adsArray?.milliSec">
+                                <a [href]="adsArray?.url" class="anchor_work d-block" target="_blank"
+                                    [title]="adsArray?.url">
+                                    <img [src]="adsArray?.image" *ngIf="adsArray?.filetype=='image/jpeg'"
+                                        class="d-block w-100" alt="order1">
+                                    <video *ngIf="adsArray?.filetype!='image/jpeg'" [src]="adsArray?.image"
+                                        class="video_size m-1 rounded-3" autoplay></video>
+                                </a>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls1"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls1"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div *ngIf="loader" class="col-12 mt-4 d-flex align-items-center justify-content-center flex-column loader_work">
+    <div class="spinner-border" role="status">
+    </div>
+    <div class="heading_text mt-1">
+        <span class="h1 text-dark mb-0 fw-bold">Loading...</span>
+    </div>
+</div>
